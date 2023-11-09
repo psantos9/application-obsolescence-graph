@@ -1,9 +1,7 @@
 <template>
   <div class="flex flex-col">
     <div class="font-bold sticky top-0 bg-white py-2">
-      {{ applications.length }} Application{{
-        applications.length === 1 ? '' : 's'
-      }}
+      {{ applications.length }} Application{{ applications.length === 1 ? '' : 's' }}
     </div>
     <div class="flex flex-wrap gap-2 text-xs">
       <div v-for="application in applications" :key="application.id" class="shadow rounded p-1 bg-gray-100">
