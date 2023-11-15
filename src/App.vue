@@ -9,12 +9,15 @@
       </div>
     </div>
   </div>
+  <div id="mynetwork"></div>
 </template>
 
 <script lang="ts" setup>
 import { useApi } from '@/composables/useApi'
+import { useNodes } from '@/composables/useNodes'
+
 
 const { initializeReport, applications } = useApi()
-
 initializeReport()
+
 </script>

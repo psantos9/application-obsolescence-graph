@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@leanix/reporting": "^0.4.120",
+    "vis-network": "^9.1.9",
     "vue": "^3.0.0"
   },
   "devDependencies": {
