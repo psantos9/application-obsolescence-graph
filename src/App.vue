@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col h-screen">
-    <force-graph />
+    <v-graph />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useApi } from '@/composables/useApi'
-import ForceGraph from '@/components/ForceGraph.vue'
+import VGraph from '@/components/VGraph.vue'
 
 const { initializeReport, loadDataset } = useApi()
 initializeReport()

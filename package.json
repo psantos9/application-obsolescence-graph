@@ -10,9 +10,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@dagrejs/dagre": "^1.0.4",
     "@leanix/reporting": "^0.4.120",
-    "d3-force": "^3.0.0",
     "graphql": "^16.8.1",
     "leanix-js": "^1.0.1",
     "v-network-graph": "^0.9.13",

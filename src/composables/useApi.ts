@@ -12,7 +12,12 @@ const initializeReport = async () => {
 }
 
 const loadDataset = async () => {
-  graph.value = await loadGraph(lx.executeGraphQL.bind(lx))
+  try {
+    lx.showSpinner()
+    graph.value = await loadGraph(lx.executeGraphQL.bind(lx))
+  } finally {
+    lx.hideSpinner()
+  }
 }
 
 const useApi = () => {

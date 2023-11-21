@@ -1,0 +1,2366 @@
+[
+  {
+    "id": "28fe4aa2-6e46-41a1-a131-72afb3acf256",
+    "name": "AC Management",
+    "level": 1,
+    "eol": 20290806,
+    "children": [
+      {
+        "id": "c9bd9db6-1a39-40ba-a2c0-7a908aba49ce",
+        "factSheetId": "ae631e5a-71cc-4b22-b441-a0cecda46a15",
+        "activeFrom": 20231105,
+        "activeUntil": 20231122
+      }
+    ],
+    "itComponents": [
+      {
+        "id": "2e9db54d-d6e9-4ec8-93f3-0d17315ff871",
+        "factSheetId": "f62c169e-35cf-4f62-aabc-d21f764ec22b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "51663856-ca7e-4a53-8412-14e6811df0ab",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "b668777a-940a-4bb9-9bff-9118199f2be1",
+        "factSheetId": "bc038a05-8700-4fa3-a454-58978bfe31e8",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAccepted"
+      },
+      {
+        "id": "36cd8d89-5ace-4545-97f1-8724bdf33efa",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "ae631e5a-71cc-4b22-b441-a0cecda46a15",
+    "name": "Child Application",
+    "level": 2,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "2efa37b5-18aa-48d8-9d70-1328c0d856d7",
+    "name": "AC Management Cloud",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "2e50479c-fd64-4800-b398-3f34c653994b",
+    "name": "Adobe Creative Cloud",
+    "level": 1,
+    "eol": null,
+    "children": [
+      {
+        "id": "259bfdd7-3e4a-4f80-8d89-06c48b105a17",
+        "factSheetId": "7aaf9610-d6dc-42e1-bd4c-0006fa64acd2",
+        "activeFrom": null,
+        "activeUntil": null
+      },
+      {
+        "id": "b43eeeea-b6fa-43e9-8eb5-308d82c7eef4",
+        "factSheetId": "f9d649e8-8d3c-4967-b2fd-100c5a198d08",
+        "activeFrom": null,
+        "activeUntil": null
+      },
+      {
+        "id": "1374b8a4-2936-4593-84cd-8df0e9585bf6",
+        "factSheetId": "e57fdeac-99c8-4185-9784-a9b3f5c1448b",
+        "activeFrom": null,
+        "activeUntil": null
+      },
+      {
+        "id": "5b6769a1-5ee8-404c-b93a-5ada3854b3e1",
+        "factSheetId": "37f6115e-d572-4880-a0d8-70b79a956d9d",
+        "activeFrom": null,
+        "activeUntil": null
+      },
+      {
+        "id": "c29dbdf5-c85c-4b10-8c57-30772d47318f",
+        "factSheetId": "8544f00e-a121-4611-819e-3505f4aca4b6",
+        "activeFrom": null,
+        "activeUntil": null
+      }
+    ],
+    "itComponents": [
+      {
+        "id": "ec621dfe-3883-4c6a-a38b-7f890085fdcf",
+        "factSheetId": "c37e073e-b6f2-4637-8a83-19c605a9242b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "7aaf9610-d6dc-42e1-bd4c-0006fa64acd2",
+    "name": "Adobe Acrobat Pro",
+    "level": 2,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "55135082-5a87-48e8-9955-79d1a1451b78",
+        "factSheetId": "a8fe4825-42b8-431b-8124-ca12c579c78b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "f9d649e8-8d3c-4967-b2fd-100c5a198d08",
+    "name": "Adobe Illustrator",
+    "level": 2,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "96e31baa-bccc-4255-bf78-ce5e987f7f73",
+        "factSheetId": "064f67f3-158b-4f8e-83e0-246161945ede",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAccepted"
+      }
+    ]
+  },
+  {
+    "id": "e57fdeac-99c8-4185-9784-a9b3f5c1448b",
+    "name": "Adobe InDesign",
+    "level": 2,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "a3d33ac3-17b1-40e5-b1a3-7faa47fd1eaa",
+        "factSheetId": "fd9462f2-2566-4384-86e4-5afde5de76d1",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "37f6115e-d572-4880-a0d8-70b79a956d9d",
+    "name": "Adobe Photoshop",
+    "level": 2,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "6b485fb3-6fe1-46f9-8de4-d57d4c237554",
+        "factSheetId": "bbbdd3fa-8a9f-4113-a664-70dd94355d86",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "8544f00e-a121-4611-819e-3505f4aca4b6",
+    "name": "Adobe Premiere Pro",
+    "level": 2,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "8f384b80-870c-4ffe-bb3f-ae2d80e61668",
+        "factSheetId": "b3efc327-b5c6-4dc3-a1a8-5c1e5b4a22f0",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "e026a670-6055-498e-93b9-dcaf64710d11",
+    "name": "ApplicationA",
+    "level": 1,
+    "eol": 20231017,
+    "children": [
+      {
+        "id": "784d64c7-47bc-45ca-a7cd-4ed681b5c9b6",
+        "factSheetId": "1b60e68b-56df-4647-bb85-2a5e19a9b52e",
+        "activeFrom": null,
+        "activeUntil": null
+      }
+    ],
+    "itComponents": [
+      {
+        "id": "82bd183f-56ab-4115-9197-25bf14fadb87",
+        "factSheetId": "14194a6b-32a8-4853-8510-2c0a46a1090b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "1b60e68b-56df-4647-bb85-2a5e19a9b52e",
+    "name": "ApplicationAA",
+    "level": 2,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "f72ddda7-19cc-437e-bbce-22782fd74169",
+        "factSheetId": "5eb4d16e-89c4-4f63-b759-ab7b9ca23a37",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "aceb7be1-2c49-4f63-b091-ad31a01cec73",
+    "name": "Atlassian Confluence",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "9220fc80-4874-4c62-a652-1355b9c616e1",
+        "factSheetId": "0756b5d1-6078-46bd-8224-59270e020e7e",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "58f554bc-b8f2-487e-b598-df27b4a8e870",
+    "name": "Atlassian Jira Software",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "44891e37-cbab-4748-bfe7-148419bc934b",
+        "factSheetId": "2cd7eb13-6808-4584-9934-8ca2425088b6",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "5a053a3b-364d-4264-bd4a-59f10717e1cc",
+        "factSheetId": "d2ce4c82-ffff-44c2-8c17-1f9a7cd81eac",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAccepted"
+      }
+    ]
+  },
+  {
+    "id": "91a18208-aade-4a64-ae58-11a6a307a26e",
+    "name": "AttorneyNet",
+    "level": 1,
+    "eol": 20240408,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "c30f17a0-3e62-47ac-97b1-64847c0ac240",
+        "factSheetId": "1b3cfea5-669a-4e7b-8a5a-717f52abce30",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "001d3e51-a3be-4d5b-90f7-5b7a9e0b9458",
+    "name": "audimex",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "25ee1e8a-d4e5-4a75-9ff0-e8c980a75020",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "bccdb580-794a-4bbc-932a-71d7d543ea05",
+        "factSheetId": "c685a0fd-e8c3-4645-b5ff-672d0c1c6c7b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAccepted"
+      }
+    ]
+  },
+  {
+    "id": "e5322a3c-c499-4b78-a45a-908a916d9704",
+    "name": "AutoCAD",
+    "level": 1,
+    "eol": 20220601,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "1ecf20be-c0c0-4b85-9344-e66e01c6af4a",
+        "factSheetId": "c703a74b-481f-4342-a4ab-7fbbdc39bb8b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "878bdbb9-6eac-4386-8b46-2ded7f026623",
+        "factSheetId": "1b3cfea5-669a-4e7b-8a5a-717f52abce30",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "99da6c23-2086-4e90-8f49-7794e95e09b6",
+        "factSheetId": "568d4f88-319f-4a38-871c-3e2013a42ab7",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "9a40eac1-e348-4e1e-ab1f-7dfb88c2188e",
+    "name": "B2B MobileApps",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "d6a1c161-2a6d-4f2e-bf4b-1ba64ce06f1c",
+    "name": "B2B Website.com",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "a68e1bdc-d60a-4d52-8b8c-c1f254d5d1bd",
+        "factSheetId": "ed46809c-998a-4fd6-9185-4b25e4e77d9b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "daddde61-1f50-4ab1-bbfd-36f0a5329988",
+    "name": "Bonus Card Americas",
+    "level": 1,
+    "eol": 20260406,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "bb33a6cf-13c4-4d08-a722-d385facb4813",
+        "factSheetId": "067f3f8b-8a7e-47d0-bbfb-0982fbc2871d",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "bd5157e8-cdf8-47b8-b9b5-b360c411b28a",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "dbe0280f-0729-4424-81ce-6e2546241612",
+        "factSheetId": "1b3cfea5-669a-4e7b-8a5a-717f52abce30",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAccepted"
+      }
+    ]
+  },
+  {
+    "id": "9dc25869-ff39-46ef-aefb-3b407ffbc9db",
+    "name": "Bonus Card Asia/Pacific",
+    "level": 1,
+    "eol": 20201202,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "d160e314-5219-48d3-b440-d2464061e5b4",
+        "factSheetId": "067f3f8b-8a7e-47d0-bbfb-0982fbc2871d",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "033a76fc-c3bf-4532-bee3-91e5025f6bd2",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "9937cdb9-3c3b-4ffd-b2cd-68e404231dc5",
+        "factSheetId": "c685a0fd-e8c3-4645-b5ff-672d0c1c6c7b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "90492d17-4dc3-421a-911b-aa906d05f116",
+    "name": "Bonus Card Europe",
+    "level": 1,
+    "eol": 20220106,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "40d09979-273a-4b89-843b-b24371a82923",
+        "factSheetId": "067f3f8b-8a7e-47d0-bbfb-0982fbc2871d",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "95a13ca3-88a4-4194-8379-4ac504b55b01",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "3c3b84a0-e077-4b3e-bf87-4c047db91bd7",
+        "factSheetId": "c685a0fd-e8c3-4645-b5ff-672d0c1c6c7b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "25eda1ec-7b46-40d5-967d-40944ca6510a",
+    "name": "Bonus Card Use Watch",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "c87442e5-6873-42fa-99ac-bc8bd9348f0c",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "3e65c27b-1400-46be-bbe9-a08cb2e74aa5",
+        "factSheetId": "bc038a05-8700-4fa3-a454-58978bfe31e8",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "bb540308-fe7a-406a-aaf0-1a46ae57577a",
+    "name": "BPM",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "223b81b0-dbcf-4488-a847-833aa37a1810",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "e3aa4127-9e34-4011-a231-d51aafac8377",
+        "factSheetId": "92881d67-217a-4700-acf3-c62223edb66a",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "50365418-7351-44ad-8b23-ad8e0bd1ac7a",
+    "name": "brand maker",
+    "level": 1,
+    "eol": 20211113,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "e7654f7f-94e7-4eff-b621-b2e9c3c74690",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "95e8916d-84e6-4364-b8df-fe88a7b168a7",
+        "factSheetId": "92881d67-217a-4700-acf3-c62223edb66a",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "d8dc25a5-8efb-49c6-8b70-90db625a44c7",
+    "name": "BYOD Directory",
+    "level": 1,
+    "eol": 20260612,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "dbbf448a-4fc7-4aa0-b7e6-b410ed462fa7",
+        "factSheetId": "f4379844-ce73-4880-b7d3-c6059894369a",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "25f89023-df96-43b2-8b0a-fb0b09000db4",
+        "factSheetId": "45e20fc4-83d5-479c-a427-9683c23f7fa3",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "06318de3-3177-450f-b38a-cd279ce15fab",
+        "factSheetId": "2ce89680-1c36-4306-b74c-e7cab8ea60dd",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "dc6d4fd1-2bc1-41f6-a4cd-191989734113",
+        "factSheetId": "568d4f88-319f-4a38-871c-3e2013a42ab7",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "728926ed-e9aa-4ec2-b790-875e39792a58",
+    "name": "Call Center Management",
+    "level": 1,
+    "eol": 20220128,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "c309b697-7f3e-4c27-813d-8a94d76a76c3",
+        "factSheetId": "3b660712-a953-43c7-8bd4-94c34876368d",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "5c2a3d88-a06d-4d6f-9eba-b33fc8ceb030",
+        "factSheetId": "2ce89680-1c36-4306-b74c-e7cab8ea60dd",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "6a6d5076-73ec-4d94-9515-90d6121b3446",
+    "name": "Call Center Management 2.0",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "2311437f-0ce0-49b5-ba32-e2dae8a52659",
+    "name": "Capacity",
+    "level": 1,
+    "eol": 20221109,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "64b80227-3d34-4c55-9d78-ba76a9ec7994",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "a814e04c-f262-4114-8179-4ac9d335a963",
+        "factSheetId": "e55d6bc5-0829-4a54-8ff1-fa18edce61e7",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "c90ae45a-b163-42fa-841b-3f738122775c",
+    "name": "CID",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "b70f1f39-b6d7-4b96-9e7d-dd43bf95991e",
+        "factSheetId": "e55d6bc5-0829-4a54-8ff1-fa18edce61e7",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "15e59ed2-6ad4-4d79-9430-500cca91fa19",
+    "name": "CIS",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "a5d814a0-791d-431b-8bbd-aab3abba0531",
+        "factSheetId": "1bf1d462-19bc-4b1e-9802-79f159cc8bcb",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "2d912343-92ff-45a9-8ef3-a5a56264af97",
+    "name": "CoA",
+    "level": 1,
+    "eol": 20210802,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "888fa768-eb9d-45f6-9179-018ee5fef524",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "b32e0fc5-a72b-4ca3-9199-f1b26d1e2800",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "9fbf0823-4298-41b5-bb0a-552ae0067177",
+    "name": "Contract Management",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "9a49693c-bdfb-4b2f-b4ef-34c6c89da243",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "f6fb9173-da5e-43bf-bfbd-32781c88ae6d",
+        "factSheetId": "5c320432-baae-4a11-be1d-8414c80bad6f",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "c2721fc1-c7c3-4b59-ad74-432399823330",
+    "name": "Cost Modelling",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "d4238d81-59a2-47f7-a54e-512efa128b76",
+        "factSheetId": "a08f38cd-4227-4039-8006-2f46475e9ece",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "001c3e45-aa0f-458b-b919-065b178ee514",
+    "name": "CustEchoe Americas",
+    "level": 1,
+    "eol": 20251022,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "26ba837b-c0c0-4726-bd9e-ed7553d0e360",
+        "factSheetId": "fbea2dc8-55c4-448a-9ffd-c5cab5aaebb1",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "7de29b8c-5a7d-448d-99d0-0a5486421bc1",
+    "name": "CustEchoe Asia/Pacific",
+    "level": 1,
+    "eol": 20201210,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "36bc04d4-efde-4ffc-a3e1-edfd0c65b83f",
+        "factSheetId": "fbea2dc8-55c4-448a-9ffd-c5cab5aaebb1",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "81074707-5ce5-4700-96fa-37eb464abf9c",
+    "name": "CustEchoe Europe",
+    "level": 1,
+    "eol": 20220610,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "09856250-d5a6-42ab-ad36-706a9ac0dcff",
+        "factSheetId": "fbea2dc8-55c4-448a-9ffd-c5cab5aaebb1",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "18ca3efb-7b56-4a5e-9104-0cf91dbaa166",
+        "factSheetId": "2a0c9816-0e4d-4d2f-a1af-5f85f6125e77",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "b1144d88-bbf0-4887-a054-8c3a7d5b30ee",
+        "factSheetId": "5aa742fb-82b2-4fef-89af-7bb4a250f267",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "198dc748-90bd-47fc-8c1f-02d9520bfd36",
+    "name": "CustEchoe New",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "2c953aa1-5879-4134-8790-935e5dee0723",
+        "factSheetId": "c685a0fd-e8c3-4645-b5ff-672d0c1c6c7b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "1cee5ffa-c4da-4fa0-a856-60e506188114",
+    "name": "DocMan",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "2a8ed17f-54b9-4adc-abce-21adba14dfe3",
+        "factSheetId": "978f75d6-68ff-4799-9897-f686a9010435",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "9a6fc624-2089-4b61-913b-7f92391228d4",
+        "factSheetId": "568d4f88-319f-4a38-871c-3e2013a42ab7",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "8f021f46-67e1-4ec5-aae2-e11a05dad253",
+    "name": "EmpAppraise",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "256b8a71-6fa9-4f77-a0b7-93d56a54a76d",
+        "factSheetId": "2fb5005e-2b9c-4b3b-8714-228a48749612",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "8056e3b2-fae0-4904-8f7e-f899276cdb05",
+    "name": "eShopping",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "407282c3-b913-4d33-937b-852b0b8d1f4e",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "76c421bb-7779-4f35-9b85-0ac5b5e64d37",
+        "factSheetId": "568d4f88-319f-4a38-871c-3e2013a42ab7",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "ced963cc-6188-48da-a70b-2469363c471f",
+    "name": "Event Plan",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "64039ee7-a2f3-4144-8a7d-0cfba7f1a12d",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "3e096448-db65-4e29-9fd5-2f919abd8209",
+    "name": "EXCEL Planning Tool",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "52a96d66-c33a-4361-9d6c-64365cbaf2f7",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "1bd39562-6d03-40a9-b2e5-34a195c089c7",
+        "factSheetId": "61f85814-2fb5-4867-90ed-804da81966ef",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "5e475f3d-bbb5-4644-b929-547f5cad2941",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "e3a08f5f-5c3e-4dc1-8444-ed87bdd48634",
+    "name": "Exchange",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "20c7a95f-1ced-4de3-a468-f139849c575e",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "52ae7293-56a5-44d3-b09a-429d2f929085",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "14a29d03-e96e-4bb7-8ac7-24c168b44fbf",
+    "name": "ExecuTrack",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "bfe3cc02-a6ee-41bb-905c-56092ac597ac",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "97d309e1-7571-4b06-9dc5-b4339ecec997",
+    "name": "faceLift",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "e15b9c1a-4432-4d3f-bd66-675ee00c7e14",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "3a28f34d-c6df-41ae-8e78-807d8b8df94f",
+    "name": "FMS",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "b67ac581-237d-483b-8964-6cc70e0836bc",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "e7081bbd-092e-4924-b0f3-b94c980884ea",
+    "name": "Gainsight CS",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "5c16b2a1-0c60-4ef5-86a8-dde9e5c291cb",
+        "factSheetId": "5124d683-324d-422d-86ac-27891b14e59c",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "2e1afd87-72e4-4d89-ba15-faae26de2645",
+    "name": "Global Capacity Management",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "feca1cf0-837c-4645-a7cf-752440241ca0",
+    "name": "Google",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "f91cf2a9-a5fe-4700-a9a2-dfb6fa4c9977",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "3ab27ef5-c433-4777-8890-a011bd3186f3",
+    "name": "Google Analytics",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "bf1c1e70-2e56-42d2-9fa5-77dc7726046a",
+        "factSheetId": "b2bd4ec7-4dde-4db7-bd7a-5a1810dcefc8",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "e11a6f72-5051-4eb2-a1fd-e0a8634500ce",
+    "name": "Govi",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "e93f0f64-c8ed-4d74-938e-dff3d3f8be5f",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "62054296-c9b2-4647-8bd9-8a87fc38acb4",
+        "factSheetId": "b2bd4ec7-4dde-4db7-bd7a-5a1810dcefc8",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "28d2601b-8048-49aa-854e-79cc50f48f37",
+    "name": "HP Service Desk",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "fdcd00dc-f562-4d08-a61c-e84d58158260",
+        "factSheetId": "d906105d-4034-4da2-b6c5-a5faeb0a633a",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "46506714-bf14-4a9a-9d8e-5bc55ba01458",
+        "factSheetId": "94ff5905-54f5-49ac-a00b-5ab4a29e7de8",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "6d8190f4-797a-4f11-99b0-7bf626db1914",
+        "factSheetId": "b2bd4ec7-4dde-4db7-bd7a-5a1810dcefc8",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "26be83c4-2b7f-479e-b3f9-ef0006db54ba",
+    "name": "HR Admin",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "57b725f8-c352-4738-9b15-45bac792356b",
+        "factSheetId": "b2bd4ec7-4dde-4db7-bd7a-5a1810dcefc8",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "5d927321-84b2-47ec-8653-25110ccf9872",
+    "name": "HR Plan",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "4019b530-e931-473e-acd3-c864dee64a7c",
+        "factSheetId": "176927da-6348-4475-8ae1-24ae4f50f146",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "6a78732e-d120-4d34-b18e-8d2bb200798e",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "a0b5b6fc-73a8-440f-aed5-a2e7926c1c68",
+        "factSheetId": "4097b9f4-1f1e-42ab-87da-a553cb923910",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "36485eed-512b-4ea1-b592-8e332c6483e7",
+    "name": "HutSut meshlab",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "8610b358-89de-4801-968d-d8b5c7d0dcde",
+        "factSheetId": "361b1940-c447-4985-8985-cf224827c9b0",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "70410cfc-94ef-4728-bb72-4c998cd11d25",
+        "factSheetId": "4097b9f4-1f1e-42ab-87da-a553cb923910",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "c443c92f-d9b1-4f25-8521-ed33e24a344b",
+    "name": "HypeCollab",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "bacd1ec3-b87f-47bb-a406-5e26d867a436",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "59ed7bb9-b42c-4a32-a4b1-50db628cc9bd",
+        "factSheetId": "4097b9f4-1f1e-42ab-87da-a553cb923910",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "f779e6fa-2fb0-48f9-9cf2-f84585cfe536",
+        "factSheetId": "568d4f88-319f-4a38-871c-3e2013a42ab7",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "af3bfde4-d73a-45ab-96ca-704e16138d6d",
+    "name": "IBM Aspera",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "8aad7663-62a7-41ea-a3f8-c52557d3c6a3",
+        "factSheetId": "dff6a026-7aa5-4317-b8c1-08f9c12b01f0",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "49802f4d-08bc-4992-a52c-88ea85488e42",
+    "name": "IBM Cloud Video",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "29a9c7f1-cab6-4163-b7f5-bb41136f7dd9",
+        "factSheetId": "f8bb868f-3d47-482e-a93f-a7b0e75bfc8b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "115ab64b-92da-4f3a-9042-49e3103dc2fc",
+    "name": "IBM SPSS Statistics",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "69bc3305-cfec-4851-a195-eb99dd9317b0",
+        "factSheetId": "a3bbff82-4ca2-4990-b73e-9c22968c486a",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "79880ea8-40b0-48fc-af7b-f295d6a81b1f",
+    "name": "Idea Club",
+    "level": 1,
+    "eol": 20200601,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "2d8ef756-1cba-425f-9f6e-605c54146aea",
+        "factSheetId": "4097b9f4-1f1e-42ab-87da-a553cb923910",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "181e7c42-3725-4ed2-94cc-822a3413dc8e",
+    "name": "IdeaIT",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "c95f33be-f87a-4df4-b9f0-438ac707c659",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "4481a9ac-34b6-4b94-bdd6-c77393be7cce",
+        "factSheetId": "cc5a6783-e4bb-4ff1-852d-ca60c53c2692",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "6adca1cb-3d09-456f-a02d-3d9a77d7e36f",
+    "name": "Imagine",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "ab346995-0f21-43f5-8bee-873cc5ce13e3",
+        "factSheetId": "cc5a6783-e4bb-4ff1-852d-ca60c53c2692",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "cbde2056-08cf-40e8-a2c8-8f8130ec3994",
+    "name": "inDesign",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "d6b738d6-44b5-48de-88f0-f5491374208a",
+        "factSheetId": "65e5f779-b7f0-4a1f-9c88-9f0e3ae9bed9",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "38938b3c-f6c1-4f77-ab0e-5e43b81aace2",
+        "factSheetId": "cc5a6783-e4bb-4ff1-852d-ca60c53c2692",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "84056b78-2fcd-4932-9861-7b3f66edaa68",
+    "name": "Insight",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "58692686-905a-43b2-85ea-466d4a36310d",
+        "factSheetId": "f129de0b-816b-4c39-980e-ac447ab98c1f",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "f10d75f9-86f9-4718-829a-cba2c5514497",
+    "name": "Issue Tracking",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "78f7478b-2ab5-4d4e-bea4-2eedf57e46f0",
+        "factSheetId": "ff71e446-8ade-4782-8052-2ff64984df45",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "a4f5f4eb-2b31-4669-bbbf-9f52929b9444",
+        "factSheetId": "f129de0b-816b-4c39-980e-ac447ab98c1f",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "76633df0-a729-49ea-9eb8-c681fc31f43f",
+        "factSheetId": "568d4f88-319f-4a38-871c-3e2013a42ab7",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "948a8e2e-db59-484d-a87d-82e583beb885",
+    "name": "issueTrack",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "18363a01-af1f-4abd-84a3-673213ab91b7",
+        "factSheetId": "f129de0b-816b-4c39-980e-ac447ab98c1f",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "765e070c-8829-4489-a852-05f10b7fb0a0",
+    "name": "Jenny",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "67295ffd-dda7-4c28-8892-b9a77008fc49",
+    "name": "JIT Reporting",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "dc99ca75-fff9-4ea8-aef3-ebf19d96eb45",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "6c27902e-3f85-4f1a-af8c-92a4ea9f7a6c",
+    "name": "Jobwatch",
+    "level": 1,
+    "eol": 20220201,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "508144e7-2498-4b5d-9e5a-f04d048ddfa5",
+    "name": "Law+",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "3a869168-9871-49f8-806d-06eda8c3c08b",
+        "factSheetId": "c685a0fd-e8c3-4645-b5ff-672d0c1c6c7b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "78a18461-7330-4af2-a77f-0a1572debfac",
+    "name": "LDAP",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "c5a30935-55d4-4c1b-8fa4-17f07fc29401",
+        "factSheetId": "afd31c81-3fff-4367-9d90-458eecb3efa7",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "5d11a313-8a1c-4636-ad3c-138e883233de",
+    "name": "LeanIX EAM",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "a2b0012b-40e9-487f-879e-203bfc0dcc19",
+        "factSheetId": "c38887e7-dd94-4bbf-b5f5-e9feac4446ab",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "55fcf822-8600-4437-9bce-70d89d8636c6",
+    "name": "LeanIX SMP",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "41beeab8-b839-4b65-a6df-1e6bcc2baf7f",
+        "factSheetId": "c38887e7-dd94-4bbf-b5f5-e9feac4446ab",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "5f58e5e5-63d3-4615-9cfa-3920ff563523",
+    "name": "LeanIX VSM",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "e3af2f69-4cdd-413d-b0b5-1082d3fee332",
+        "factSheetId": "c38887e7-dd94-4bbf-b5f5-e9feac4446ab",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "67f73344-079c-4a37-9042-d6617b9dd7b9",
+    "name": "LeanReport",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "9d3416c9-4dd0-405a-afbe-add9d35bcf14",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "78e4cd84-f4cb-47a0-9451-36e491c0ef26",
+    "name": "Lex Actual",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "ca960646-f8b0-431d-8c34-e3ad859daf0f",
+        "factSheetId": "c685a0fd-e8c3-4645-b5ff-672d0c1c6c7b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "1a610104-6088-498a-856f-bb6a8298bcd4",
+    "name": "Mailsnake",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "c3cc27f8-4218-406b-9622-38bb2162a281",
+        "factSheetId": "0dcb0a58-3e35-4eaa-87f7-6cb098599b08",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "9040591f-3e2d-43f9-805d-76d250d5de0d",
+    "name": "Media DB",
+    "level": 1,
+    "eol": 20220501,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "c44e4fba-87af-471d-9269-304ad1d7cbd7",
+    "name": "meshlab Intranet",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "ab9f3829-4c25-4289-ae30-f73eb315e927",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "110f10e5-6e7f-47cf-9ff4-cf510046a9ed",
+    "name": "Microsoft Power BI",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "4e0400c2-62d6-42fc-8ee9-4858d822594c",
+        "factSheetId": "ac186d99-3503-4498-8f7f-eab841999e35",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "4e7db63e-92ef-4c75-80ce-790af877c3fa",
+    "name": "Monsta",
+    "level": 1,
+    "eol": 20220101,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "09764d25-2d57-405b-a6d0-9e39cf2f8237",
+        "factSheetId": "aacc5653-6120-4eb6-a5a3-a5e83eb96308",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "98c52aaa-096a-41c1-bd27-709f2761cf8f",
+    "name": "newschimp",
+    "level": 1,
+    "eol": 20230131,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "6a09ec7b-5c2a-4fd9-aa07-8b60d0c13763",
+        "factSheetId": "0dcb0a58-3e35-4eaa-87f7-6cb098599b08",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "727a8827-0cae-42d6-ac8a-bb33da43247f",
+    "name": "Odysseus",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "81dbcdb3-30fa-4700-b2ed-0164f8535601",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "3142ff97-7ddd-4f46-8075-f80d8279ff38",
+    "name": "OLAPCube",
+    "level": 1,
+    "eol": 20220501,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "b08c7d1b-60a9-4f0d-8552-404e676d49e1",
+        "factSheetId": "f62c169e-35cf-4f62-aabc-d21f764ec22b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "3b14f77b-34fe-49b9-ba76-8ec104ff06c2",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "1d57512e-c783-437c-90bf-a9c6c9e92cbf",
+    "name": "OMS",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "dc0d5354-510e-42f3-97f0-9c34bde7ae66",
+    "name": "OpenInno",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "9861d5d0-2c05-41e6-ba68-90766aa57335",
+    "name": "Orgaplan Americas",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "7c27636f-7fe4-4c0d-8d44-91447800f045",
+        "factSheetId": "77c8cc53-6453-4e16-b97b-91c34ea736de",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "53da2126-fbf2-40ad-806e-aa228b4bedc7",
+    "name": "Orgaplan Asia/Pacific",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "67a10841-06af-404c-b35d-a7fba30cb68d",
+        "factSheetId": "79de2891-842b-418c-beb4-80735015274d",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "f02db369-5026-4fbe-9a46-4d7d712f8e0c",
+        "factSheetId": "77c8cc53-6453-4e16-b97b-91c34ea736de",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "f7c360bc-4b4b-423b-9996-813964a9f281",
+    "name": "Orgaplan Europe",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "f65e2573-013d-45d8-a259-bbd649f4f313",
+        "factSheetId": "77c8cc53-6453-4e16-b97b-91c34ea736de",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "6c0d6c85-f105-464a-aac1-547be3bdebfe",
+    "name": "Orgaview",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "f6ca723e-84ac-43ff-870c-b53e2276582c",
+        "factSheetId": "fa49cd08-42b9-4d14-82ff-8e7adf75f285",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "7adfe54a-b33d-4c3c-a790-958c7467f112",
+    "name": "PartsList",
+    "level": 1,
+    "eol": 20221231,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "2f17a77f-036e-448b-80c6-4873f30b6ed5",
+    "name": "Payroll Europe",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "d779e879-987b-497b-ae40-b86c89b149e4",
+        "factSheetId": "aaf85697-2654-4315-8a2a-486c071bffe6",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "e59db861-8198-468b-a187-5a7291061199",
+        "factSheetId": "769c89b9-70ea-4587-8b6e-e78a5145e582",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "c408569d-b925-44f5-a5b8-48e89f623eb9",
+    "name": "Payroll Germany",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "6c833530-9c10-47e7-992c-39855fd3cd97",
+        "factSheetId": "161abc0d-7bed-4440-b756-5c14a741e1ad",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "4a29ee5c-56bd-4db9-9360-d065f0f34f23",
+    "name": "Payroll RoW",
+    "level": 1,
+    "eol": 20210101,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "c9b92847-0e8b-43dc-8346-a67e2a092b52",
+        "factSheetId": "c685a0fd-e8c3-4645-b5ff-672d0c1c6c7b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "44295c93-d9dd-47a6-9137-2469221993d0",
+    "name": "QMCheck",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "17e20a11-4452-4c14-9655-2d161ec102c8",
+        "factSheetId": "2a0c9816-0e4d-4d2f-a1af-5f85f6125e77",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "aef0ef0c-c611-4bef-a63a-65c080e2fb8b",
+    "name": "RD-DB",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "6353085e-16b1-4762-aea9-2b26fb897b36",
+    "name": "RELAX",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "8e1b9e8e-63cd-41a7-b690-0f4325a77296",
+    "name": "Revenue Collector",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "83c70ef0-18ee-4bfd-8a91-d09a2985399e",
+    "name": "RIM",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "b9b13c59-cf09-46a7-a150-478a464cfa38",
+    "name": "Salary Compact",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "3644c89e-c7f3-4c20-89f0-9f81d9bbdcd9",
+        "factSheetId": "1b3cfea5-669a-4e7b-8a5a-717f52abce30",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "536a6fe0-d73c-4507-ba4a-9f37c522fefa",
+    "name": "Salesforce B2B Commerce",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "6f6e7608-a178-4c08-970a-fc46fcc09daf",
+        "factSheetId": "eedb2286-c243-4e5d-97b1-00b269593ba9",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "0355d0b3-e601-4996-8f47-fccfc77e450c",
+    "name": "salesforce Light",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "14017ca6-c7ac-496c-8172-19596797f88d",
+        "factSheetId": "ca054ba6-893b-4e90-b241-1637ee62fcd6",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "54c3d116-911b-4056-83c5-e68500639785",
+    "name": "Salesforce Marketing Cloud",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "2eb5973d-ae21-438b-9a0f-36eaae1e9525",
+        "factSheetId": "075344d6-28a2-4284-8d74-2aeb1bc1a725",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "0a5059ef-d7e9-4d4f-88ae-4f42ce0a8195",
+        "factSheetId": "8614ad08-e5c7-4e0f-99d6-9f6b27a9375e",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "875aaf6d-f61d-4f48-81e7-3383ded897bc",
+    "name": "SAP BI",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "875cca74-8135-4147-9276-40c4b7a494d2",
+        "factSheetId": "161abc0d-7bed-4440-b756-5c14a741e1ad",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "fc2b0641-6172-40cf-9dbb-10e514c7e341",
+    "name": "SAP CO",
+    "level": 1,
+    "eol": 20220501,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "9316291b-361a-4050-ac79-bf9f96811fb1",
+        "factSheetId": "161abc0d-7bed-4440-b756-5c14a741e1ad",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "1e12b27d-ea34-4a1c-a04c-d489840288ef",
+    "name": "SAP FI",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "9d304706-f99d-42ad-ae7c-cd328f912e39",
+        "factSheetId": "9deb9733-5701-42f1-8c52-c165acaa6487",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "95f7a96b-8eab-4708-865c-2a8a8005be81",
+        "factSheetId": "161abc0d-7bed-4440-b756-5c14a741e1ad",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "a3934b25-387a-49af-a8ea-a3ec2c4cd872",
+    "name": "SAP FSCM",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "ec264512-1e70-4e65-ab00-07ef5d119a70",
+        "factSheetId": "161abc0d-7bed-4440-b756-5c14a741e1ad",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "b8221f32-f846-4058-86e4-2e6b6acfaad9",
+    "name": "SAP MM",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "7ab4ce6b-ea89-49a8-9558-4272646ed365",
+        "factSheetId": "161abc0d-7bed-4440-b756-5c14a741e1ad",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "716b9d27-3df7-42ca-ae6e-e2ef788064dd",
+    "name": "SAP SCM",
+    "level": 1,
+    "eol": 20220601,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "9ab5f827-d129-4a02-9176-54c91fc37bb3",
+        "factSheetId": "161abc0d-7bed-4440-b756-5c14a741e1ad",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "39129478-8ba6-476b-9e47-033e8c2dd5b7",
+    "name": "SAP Signavio Process Manager",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "4b85b9b9-2c94-4c76-9011-dfc79a4896de",
+        "factSheetId": "e8632ddc-9448-4089-bab5-0390144ad104",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      },
+      {
+        "id": "c6b2b6b9-da2e-440b-9cc0-21fb041a1b96",
+        "factSheetId": "3b309013-ace8-4c02-bbec-d708e8fdba6d",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "bed438b9-f76d-4942-958f-a24d2cb471cb",
+    "name": "Schedule & Track",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "52aa767f-663c-4123-88f4-bdb7cce02383",
+        "factSheetId": "c685a0fd-e8c3-4645-b5ff-672d0c1c6c7b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "e9d4d782-de57-4419-a27c-03f1e395f3ab",
+    "name": "serviceEngage",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "df381add-191a-40e8-aff4-660935b74bac",
+    "name": "SLA Tracking",
+    "level": 1,
+    "eol": 20220501,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "788fb490-9e49-4df2-b6a3-67812e5681c0",
+        "factSheetId": "1b3cfea5-669a-4e7b-8a5a-717f52abce30",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "0d140d63-d0ab-4cc3-a95f-172c4645a816",
+    "name": "SPSS",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "81c33364-911b-4f79-9eed-f28c1e04a839",
+        "factSheetId": "b2bd4ec7-4dde-4db7-bd7a-5a1810dcefc8",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "2c39107a-51a0-4bce-a539-d59bdbca2c0f",
+    "name": "Stocky",
+    "level": 1,
+    "eol": 20220401,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "3ee532b3-7d9f-4873-9401-94505b53b1e1",
+        "factSheetId": "dbcf60e8-f7d3-4d3b-92a6-4c7a6520b189",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "ac6d7dcb-0d8c-498e-9155-cc67b0515b3d",
+    "name": "Supplier Tracking Germany",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "4134e02a-2f99-4539-a651-49af0878ffb5",
+        "factSheetId": "1d63d17f-46a9-463b-ba36-603aed40bbe6",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "08de9e1e-7a19-4d65-b1f5-3234280b1804",
+    "name": "Supplier Tracking Poland",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "877c839f-bd9d-42fb-86d3-151baad99374",
+        "factSheetId": "290e33ea-81c9-4503-abbb-ca91b7e251e9",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "5c4cb3d9-d215-4adc-9db1-d209de57317a",
+    "name": "Supplier Tracking USA",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "ab0fdbc0-d5c2-47b8-b4b3-c4067fdf5dbb",
+        "factSheetId": "6d64eb49-2af7-4a15-8eeb-5fdc308b2a78",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "30dc4257-9395-46ce-a2ad-b7a582f58de6",
+    "name": "SuppList",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "0f535fd8-5ef6-42b1-85dd-b87ebd19224c",
+    "name": "Time Track",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "a97d05c9-6695-443e-9f83-42eab141d07f",
+    "name": "Training Management",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "7139c2f2-a9fc-43d5-b8a3-2b7fec111a6f",
+        "factSheetId": "2a0c9816-0e4d-4d2f-a1af-5f85f6125e77",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "ddcc0f4b-a1f8-48c1-994d-1e80d7f746ee",
+    "name": "Training Plan",
+    "level": 1,
+    "eol": 20220701,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "771e5f92-c9b3-432f-b054-a9d01fded237",
+        "factSheetId": "2a0c9816-0e4d-4d2f-a1af-5f85f6125e77",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "99ec9dd3-5f11-4556-9d2b-8efb4af92f7a",
+    "name": "Transport Timestamp",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "80633e98-2d77-487f-a3c4-2f18c6e0b4c9",
+        "factSheetId": "cc5a6783-e4bb-4ff1-852d-ca60c53c2692",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "0550e21b-7b97-40a3-baf1-cffac190b5b5",
+    "name": "TUPPAS",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "e2c5b738-40bc-4c45-a6ca-bc79aa41d988",
+        "factSheetId": "944ce063-53df-40d9-956a-daaf695e6461",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "83869127-6099-4e66-9a93-1f720f86d2e1",
+    "name": "twitter",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "e63faa21-a088-43e2-addc-2bca17d95f79",
+        "factSheetId": "b7d458b5-9bbf-45f9-903a-8d97f4a82cac",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": null
+      }
+    ]
+  },
+  {
+    "id": "d1080953-0051-49d9-972b-4a9addf0b321",
+    "name": "Ultimo",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "ad945f33-d5e7-4a5b-a5b4-ef9be316a59f",
+    "name": "Video Conference",
+    "level": 1,
+    "eol": 20220301,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "f68e52d5-8133-483c-8465-06fcc34a38d6",
+    "name": "VPN",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "dec8a3f7-f291-4075-8fb2-4221c6ed140b",
+    "name": "WebTime",
+    "level": 1,
+    "eol": 20200301,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "8badc3c4-859f-4648-b3e5-602df0303cdb",
+        "factSheetId": "cc5a6783-e4bb-4ff1-852d-ca60c53c2692",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "4584a892-f133-4cdd-94a6-2b6854b84de3",
+    "name": "WMS large",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "556c8ee5-c5ee-4c38-877d-11697ab53ec2",
+        "factSheetId": "fbb31e6f-6960-42a1-89d2-20735ca16cb4",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      },
+      {
+        "id": "20fd3541-43de-4904-82e9-197bd4636f12",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "f23a2dac-f2c8-4289-9635-d8c1accc355c",
+    "name": "WMS light",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "ff2c51d1-8c9a-4e51-ac5b-922659076a78",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "bd51b347-54f8-4101-9f9a-d18eceb9f121",
+    "name": "WMS special",
+    "level": 1,
+    "eol": 20220201,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "56a2387b-7a17-49e2-86c5-148facf3fcd8",
+        "factSheetId": "5719d96b-4c45-497a-b006-c77e0d8e767b",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "eab8c2a0-9ab1-4a90-aea1-6ae654e67a11",
+    "name": "Workday",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "101c6dbf-7d7b-49a1-af6c-78ef5e1147f8",
+        "factSheetId": "34040182-9c06-4a85-b302-326080e21307",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  },
+  {
+    "id": "20e6352e-e8f7-44af-924c-c223840920b2",
+    "name": "Workday Talent Management",
+    "level": 1,
+    "eol": 20270305,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "0d0feb4a-dfd7-42c8-b5d0-f5eeb2e5e709",
+        "factSheetId": "a22c793e-64f6-44cd-be26-53b9f73fb49c",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAddressed"
+      }
+    ]
+  }
+]
