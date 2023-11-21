@@ -1,33 +1,25 @@
 import { ref, unref, computed } from 'vue'
-import type { IApplication } from '@/types'
+import type { IGraph } from '@/types'
 import '@leanix/reporting'
-import { fetchFactSheets } from '@/composables/leanix'
+import { loadGraph } from '@/composables/leanix'
 
-const applications = ref<IApplication[]>([])
+const graph = ref<IGraph | null>(null)
 
 const initializeReport = async () => {
   await lx.init()
-  fetchFactSheets(lx.executeGraphQL.bind(lx))
-  const config: lxr.ReportConfiguration = {
-    facets: [
-      {
-        key: 'Applications',
-        fixedFactSheetType: 'Application',
-        attributes: ['name'],
-        callback: (dataset: unknown) => {
-          if (!Array.isArray(dataset)) throw new Error('invalid dataset')
-          applications.value = dataset.map(({ id, name }) => ({ id, name }))
-        }
-      }
-    ]
-  }
+  const config: lxr.ReportConfiguration = {}
   await lx.ready(config)
+}
+
+const loadDataset = async () => {
+  graph.value = await loadGraph(lx.executeGraphQL.bind(lx))
 }
 
 const useApi = () => {
   return {
-    applications: computed(() => unref(applications)),
-    initializeReport
+    graph: computed(() => unref(graph)),
+    initializeReport,
+    loadDataset
   }
 }
 

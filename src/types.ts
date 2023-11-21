@@ -34,9 +34,14 @@ export interface IGraphNode {
 
 export interface IGraphEdge {
   id: string
-  from: string
-  to: string
+  source: string
+  target: string
   activeFrom: number | null
   activeUntil: number | null
   obsolescenceRiskStatus?: 'riskAccepted' | 'riskAddressed' | null
+}
+
+export interface IGraph {
+  nodes: { [nodeId: string]: IGraphNode }
+  edges: { [edgeId: string]: IGraphEdge }
 }

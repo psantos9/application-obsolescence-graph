@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import VNetworkGraph from 'v-network-graph'
+import App from '@/App.vue'
 
-import './index.css'
+import 'v-network-graph/lib/style.css'
+import 'tailwindcss/tailwind.css'
 
-createApp(App).mount('#app')
+createApp(App).use(VNetworkGraph).mount('#app')

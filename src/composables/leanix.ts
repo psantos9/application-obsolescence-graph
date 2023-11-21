@@ -6,7 +6,8 @@ import type {
   IRelatedFactSheet,
   IRelatedITComponent,
   IGraphEdge,
-  IGraphNode
+  IGraphNode,
+  IGraph
 } from '@/types'
 
 export type TLXGraphQLApiClientFn = (query: string, variables?: string) => Promise<any>
@@ -134,14 +135,11 @@ export const fetchITComponents = async (
   return itComponents
 }
 
-export const generateGraph = (params: {
-  applications: IApplication[]
-  itComponents: IITComponent[]
-}): { nodes: IGraphNode[]; edges: IGraphEdge[] } => {
+export const generateGraph = (params: { applications: IApplication[]; itComponents: IITComponent[] }): IGraph => {
   const { applications, itComponents } = params
 
-  const nodes: IGraphNode[] = []
-  const edges: IGraphEdge[] = []
+  const nodes: { [nodeId: string]: IGraphNode } = {}
+  const edges: { [edgeId: string]: IGraphEdge } = {}
 
   applications.forEach((application) => {
     const { id, name, eol, itComponents, children } = application
@@ -151,29 +149,29 @@ export const generateGraph = (params: {
       name,
       eol
     }
-    nodes.push(node)
+    nodes[node.id] = node
     children.forEach((child) => {
       const { id, factSheetId, activeFrom, activeUntil } = child
       const edge: IGraphEdge = {
         id,
-        from: application.id,
-        to: factSheetId,
+        source: factSheetId,
+        target: application.id,
         activeFrom,
         activeUntil
       }
-      edges.push(edge)
+      edges[edge.id] = edge
     })
     itComponents.forEach((itComponent) => {
       const { id, factSheetId, activeFrom, activeUntil, obsolescenceRiskStatus } = itComponent
       const edge: IGraphEdge = {
         id,
-        from: application.id,
-        to: factSheetId,
+        source: factSheetId,
+        target: application.id,
         activeFrom,
         activeUntil,
         obsolescenceRiskStatus
       }
-      edges.push(edge)
+      edges[edge.id] = edge
     })
   })
   itComponents.forEach((itComponent) => {
@@ -184,29 +182,39 @@ export const generateGraph = (params: {
       name,
       eol
     }
-    nodes.push(node)
+    nodes[node.id] = node
+
     children.forEach((child) => {
       const { id, factSheetId, activeFrom, activeUntil } = child
       const edge: IGraphEdge = {
         id,
-        from: itComponent.id,
-        to: factSheetId,
+        source: factSheetId,
+        target: itComponent.id,
         activeFrom,
         activeUntil
       }
-      edges.push(edge)
+      edges[edge.id] = edge
     })
     requires.forEach((required) => {
       const { id, factSheetId, activeFrom, activeUntil } = required
       const edge: IGraphEdge = {
         id,
-        from: itComponent.id,
-        to: factSheetId,
+        source: factSheetId,
+        target: itComponent.id,
         activeFrom,
         activeUntil
       }
-      edges.push(edge)
+      edges[edge.id] = edge
     })
   })
   return { nodes, edges }
+}
+
+export const loadGraph = async (executeGraphQL: TLXGraphQLApiClientFn) => {
+  const [applications, itComponents] = await Promise.all([
+    fetchApplications(executeGraphQL),
+    fetchITComponents(executeGraphQL)
+  ])
+  const graph = generateGraph({ applications, itComponents })
+  return graph
 }

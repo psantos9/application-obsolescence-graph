@@ -43,7 +43,7 @@ describe('leanix.ts', () => {
     console.log(itComponents)
   }, 100000)
 
-  test<LocalTestContext>('computes the obsolescence risk for an application', async (ctx) => {
+  test<LocalTestContext>('computes the obsolescence risk for an application', async () => {
     const applications = require('../../__test__/data/applications.json') as IApplication[]
     const itComponents = require('../../__test__/data/itComponents.json') as IITComponent[]
     const graph = generateGraph({ applications, itComponents })
