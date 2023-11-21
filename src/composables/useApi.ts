@@ -22,6 +22,32 @@ const loadDataset = async () => {
   }
 }
 
+const openFactSheetSidePane = async (params: { node: string; event: MouseEvent }) => {
+  const { node: factSheetId } = params
+  const node = unref(graph).nodes[factSheetId] ?? null
+  if (node === null) lx.showToastr('error', `Could not find node id ${factSheetId}`)
+  const { type, id } = node
+  const relations = [{ name: 'relToChild' }]
+  if (type === 'ITComponent') relations.push({ name: 'relToRequires' })
+  else if (type === 'Application') relations.push({ name: 'relApplicationToITComponent' })
+  lx.openSidePane({
+    teste: {
+      type: 'FactSheet',
+      factSheetId: id,
+      factSheetType: type,
+      detailFields: [],
+      relations,
+      pointOfView: {
+        id: 'teste',
+        changeSet: {
+          type: 'dateOnly',
+          date: new Date().toISOString()
+        }
+      }
+    }
+  })
+}
+
 const useApi = () => {
   return {
     refDate: computed({
@@ -30,7 +56,8 @@ const useApi = () => {
     }),
     graph: computed(() => getSubGraphForRefDate(unref(graph), unref(refDate))),
     initializeReport,
-    loadDataset
+    loadDataset,
+    openFactSheetSidePane
   }
 }
 
