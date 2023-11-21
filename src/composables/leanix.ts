@@ -145,7 +145,7 @@ export const generateGraph = (params: {
 
   applications.forEach((application) => {
     const { id, name, eol, itComponents, children } = application
-    const node: INode = {
+    const node: IGraphNode = {
       id,
       type: 'Application',
       name,
@@ -154,7 +154,7 @@ export const generateGraph = (params: {
     nodes.push(node)
     children.forEach((child) => {
       const { id, factSheetId, activeFrom, activeUntil } = child
-      const edge: IEdge = {
+      const edge: IGraphEdge = {
         id,
         from: application.id,
         to: factSheetId,
@@ -165,7 +165,7 @@ export const generateGraph = (params: {
     })
     itComponents.forEach((itComponent) => {
       const { id, factSheetId, activeFrom, activeUntil, obsolescenceRiskStatus } = itComponent
-      const edge: IEdge = {
+      const edge: IGraphEdge = {
         id,
         from: application.id,
         to: factSheetId,
