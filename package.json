@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@leanix/reporting": "^0.4.120",
+    "@tailwindcss/forms": "^0.5.7",
+    "date-fns": "^2.30.0",
     "graphql": "^16.8.1",
     "leanix-js": "^1.0.1",
     "v-network-graph": "^0.9.13",

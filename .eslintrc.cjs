@@ -1,26 +1,29 @@
 /* eslint-env node */
-require("@rushstack/eslint-patch/modern-module-resolution");
+require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
+  env: {
+    node: true
+  },
   extends: [
-    "plugin:vue/vue3-essential",
-    "eslint:recommended",
-    "@vue/eslint-config-typescript",
-    "@vue/eslint-config-prettier"
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/eslint-config-typescript',
+    '@vue/eslint-config-prettier'
   ],
   globals: {
     lx: true
   },
   overrides: [
     {
-      files: ["*.ts", "*.tsx", "*.vue"],
+      files: ['*.ts', '*.tsx', '*.vue'],
       rules: {
-        "no-undef": "off"
+        'no-undef': 'off'
       }
     }
   ],
   parserOptions: {
-    ecmaVersion: "latest"
+    ecmaVersion: 'latest'
   }
-};
+}

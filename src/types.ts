@@ -34,6 +34,7 @@ export interface IGraphNode {
 
 export interface IGraphEdge {
   id: string
+  type: 'relToChild' | 'relToRequires' | 'relApplicationToITComponent'
   source: string
   target: string
   activeFrom: number | null

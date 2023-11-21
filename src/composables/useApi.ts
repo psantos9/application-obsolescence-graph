@@ -1,9 +1,11 @@
 import { ref, unref, computed } from 'vue'
 import type { IGraph } from '@/types'
 import '@leanix/reporting'
-import { loadGraph } from '@/composables/leanix'
+import { format } from 'date-fns'
+import { loadGraph, getSubGraphForRefDate } from '@/composables/leanix'
 
-const graph = ref<IGraph | null>(null)
+const graph = ref<IGraph>({ edges: {}, nodes: {} })
+const refDate = ref(parseInt(format(new Date(), 'yyyyMMdd')))
 
 const initializeReport = async () => {
   await lx.init()
@@ -22,7 +24,11 @@ const loadDataset = async () => {
 
 const useApi = () => {
   return {
-    graph: computed(() => unref(graph)),
+    refDate: computed({
+      get: () => unref(refDate),
+      set: (value) => (refDate.value = value)
+    }),
+    graph: computed(() => getSubGraphForRefDate(unref(graph), unref(refDate))),
     initializeReport,
     loadDataset
   }

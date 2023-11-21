@@ -154,6 +154,7 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
       const { id, factSheetId, activeFrom, activeUntil } = child
       const edge: IGraphEdge = {
         id,
+        type: 'relToChild',
         source: factSheetId,
         target: application.id,
         activeFrom,
@@ -165,6 +166,7 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
       const { id, factSheetId, activeFrom, activeUntil, obsolescenceRiskStatus } = itComponent
       const edge: IGraphEdge = {
         id,
+        type: 'relApplicationToITComponent',
         source: factSheetId,
         target: application.id,
         activeFrom,
@@ -188,6 +190,7 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
       const { id, factSheetId, activeFrom, activeUntil } = child
       const edge: IGraphEdge = {
         id,
+        type: 'relToChild',
         source: factSheetId,
         target: itComponent.id,
         activeFrom,
@@ -199,6 +202,7 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
       const { id, factSheetId, activeFrom, activeUntil } = required
       const edge: IGraphEdge = {
         id,
+        type: 'relToRequires',
         source: factSheetId,
         target: itComponent.id,
         activeFrom,
@@ -218,3 +222,35 @@ export const loadGraph = async (executeGraphQL: TLXGraphQLApiClientFn) => {
   const graph = generateGraph({ applications, itComponents })
   return graph
 }
+
+// TODO: we'll just filter out edges that are not active for the ref date
+export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph => {
+  const { edges, nodes } = graph
+  const filteredEdges = Object.values(edges).reduce((accumulator: { [edgeId: string]: IGraphEdge }, edge) => {
+    const { activeFrom, activeUntil } = edge
+    if (activeFrom === null || refDate >= activeFrom) {
+      if (activeUntil === null || refDate <= activeUntil) {
+        accumulator[edge.id] = edge
+      }
+    }
+    return accumulator
+  }, {})
+
+  const validNodeIndex = Object.values(filteredEdges).reduce(
+    (accumulator: Record<string, boolean>, { source, target }) => {
+      accumulator[source] = true
+      accumulator[target] = true
+      return accumulator
+    },
+    {}
+  )
+
+  const filteredNodes = Object.values(nodes).reduce((accumulator: { [nodeId: string]: IGraphNode }, node) => {
+    if (node.type === 'Application') accumulator[node.id] = node
+    else if (node.type === 'ITComponent' && validNodeIndex[node.id]) accumulator[node.id] = node
+    return accumulator
+  }, {})
+  return { nodes: filteredNodes, edges: filteredEdges }
+}
+
+export const computeApplicationObsolescenceRisk = (applicationId: string, refDate: number) => {}
