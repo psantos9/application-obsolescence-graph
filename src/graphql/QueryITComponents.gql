@@ -1,0 +1,49 @@
+query ITComponents($after: String, $first: Int) {
+  allFactSheets(factSheetType: ITComponent, after: $after, first: $first) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        level
+        ... on ITComponent {
+          lifecycle {
+            phases {
+              phase
+              startDate
+            }
+          }
+          relToChild {
+            edges {
+              node {
+                id
+                activeFrom
+                activeUntil
+                factSheet {
+                  id
+                }
+              }
+            }
+          }
+          relToRequires {
+            edges {
+              node {
+                id
+                activeFrom
+                activeUntil
+                factSheet {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

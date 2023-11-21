@@ -1,0 +1,50 @@
+[
+  {
+    "id": "17ff3c9d-df5d-4738-a67e-ef7269cb667f",
+    "name": "Application A",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": [
+      {
+        "id": "5b977217-ffa6-4809-ace2-f3db70294154",
+        "factSheetId": "b039313d-3ada-4aa0-af66-58c87faedaf9",
+        "activeFrom": null,
+        "activeUntil": null,
+        "obsolescenceRiskStatus": "riskAccepted"
+      }
+    ]
+  },
+  {
+    "id": "9bd342d3-c16b-43ec-99be-394f84497475",
+    "name": "Application AA",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "99cadb2b-70c3-41e3-a256-f2b36fda6b45",
+    "name": "Application AB",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "50b153bf-3df2-467d-9031-12b25a6c5217",
+    "name": "Application AC",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  },
+  {
+    "id": "49beaa4f-5ce5-4bf6-9351-e6921cdda782",
+    "name": "Application B",
+    "level": 1,
+    "eol": null,
+    "children": [],
+    "itComponents": []
+  }
+]

@@ -1,0 +1,49 @@
+query Applications($after: String, $first: Int) {
+  allFactSheets(factSheetType: Application, after: $after, first: $first) {
+    totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        level
+        ... on Application {
+          lifecycle {
+            phases {
+              phase
+              startDate
+            }
+          }
+          relToChild {
+            edges {
+              node {
+                id
+                activeFrom
+                activeUntil
+                factSheet {
+                  id
+                }
+              }
+            }
+          }
+          relApplicationToITComponent {
+            edges {
+              node {
+                id
+                activeFrom
+                activeUntil
+                factSheet {
+                  id
+                }
+                obsolescenceRiskStatus
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

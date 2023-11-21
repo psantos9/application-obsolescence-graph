@@ -1,11 +1,13 @@
 import { ref, unref, computed } from 'vue'
 import type { IApplication } from '@/types'
 import '@leanix/reporting'
+import { fetchFactSheets } from '@/composables/leanix'
 
 const applications = ref<IApplication[]>([])
 
 const initializeReport = async () => {
   await lx.init()
+  fetchFactSheets(lx.executeGraphQL.bind(lx))
   const config: lxr.ReportConfiguration = {
     facets: [
       {
