@@ -13,7 +13,6 @@ export interface IFactSheet {
   id: string
   name: string
   level: number
-  eol: number | null
   children: IRelatedFactSheet[]
 }
 
@@ -22,6 +21,9 @@ export interface IApplication extends IFactSheet {
 }
 
 export interface IITComponent extends IFactSheet {
+  missingLifecycle: boolean
+  eol?: number
+  phaseOut?: number
   requires: IRelatedFactSheet[]
 }
 
@@ -29,7 +31,9 @@ export interface IGraphNode {
   id: string
   type: 'Application' | 'ITComponent'
   name: string
-  eol: number | null
+  missingLifecycle?: boolean
+  eol?: number
+  phaseOut?: number
 }
 
 export interface IGraphEdge {

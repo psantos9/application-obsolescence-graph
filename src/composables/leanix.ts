@@ -39,9 +39,7 @@ export const mapRelatedFactSheet = ({
 })
 
 export const mapApplication = (node: any): IApplication => {
-  const { id, level, name, lifecycle, relApplicationToITComponent, relToChild } = node
-  let eol = lifecycle?.phases?.find(({ phase }: any) => phase === 'endOfLife')?.startDate?.replace(/-/g, '') ?? null
-  if (typeof eol === 'string') eol = parseInt(eol)
+  const { id, level, name, relApplicationToITComponent, relToChild } = node
   const children: IRelatedFactSheet[] = relToChild.edges.map(({ node }: any) => mapRelatedFactSheet(node))
   const itComponents: IRelatedITComponent[] = relApplicationToITComponent.edges.map(({ node }: any) =>
     mapRelApplicationToITComponent(node)
@@ -50,7 +48,6 @@ export const mapApplication = (node: any): IApplication => {
     id,
     name,
     level,
-    eol,
     children,
     itComponents
   }
@@ -59,18 +56,24 @@ export const mapApplication = (node: any): IApplication => {
 
 export const mapITComponent = (node: any): IITComponent => {
   const { id, level, name, lifecycle, relToChild, relToRequires } = node
+  const missingLifecycle = lifecycle === null
   let eol = lifecycle?.phases?.find(({ phase }: any) => phase === 'endOfLife')?.startDate?.replace(/-/g, '') ?? null
   if (typeof eol === 'string') eol = parseInt(eol)
+  let phaseOut = lifecycle?.phases?.find(({ phase }: any) => phase === 'phaseOut')?.startDate?.replace(/-/g, '') ?? null
+  if (typeof phaseOut === 'string') phaseOut = parseInt(phaseOut)
+
   const children: IRelatedFactSheet[] = relToChild.edges.map(({ node }: any) => mapRelatedFactSheet(node))
   const requires: IRelatedFactSheet[] = relToRequires.edges.map(({ node }: any) => mapRelatedFactSheet(node))
   const itComponent: IITComponent = {
     id,
     name,
     level,
-    eol,
+    missingLifecycle,
     children,
     requires
   }
+  if (eol !== null) itComponent.eol = eol
+  if (phaseOut !== null) itComponent.phaseOut = phaseOut
   return itComponent
 }
 
@@ -142,12 +145,11 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
   const edges: { [edgeId: string]: IGraphEdge } = {}
 
   applications.forEach((application) => {
-    const { id, name, eol, itComponents, children } = application
+    const { id, name, itComponents, children } = application
     const node: IGraphNode = {
       id,
       type: 'Application',
-      name,
-      eol
+      name
     }
     nodes[node.id] = node
     children.forEach((child) => {
@@ -177,12 +179,14 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
     })
   })
   itComponents.forEach((itComponent) => {
-    const { id, name, eol, children, requires } = itComponent
+    const { id, name, missingLifecycle, eol, phaseOut, children, requires } = itComponent
     const node: IGraphNode = {
       id,
       type: 'ITComponent',
       name,
-      eol
+      missingLifecycle,
+      eol,
+      phaseOut
     }
     nodes[node.id] = node
 

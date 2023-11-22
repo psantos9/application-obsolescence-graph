@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import { ref, computed, unref } from 'vue'
-import { defineConfigs, type VNetworkGraphInstance, type LayoutHandler } from 'v-network-graph'
+import { defineConfigs, type VNetworkGraphInstance, type LayoutHandler, type Node } from 'v-network-graph'
 import { ForceLayout } from 'v-network-graph/lib/force-layout'
 import { useApi } from '@/composables/useApi'
 
@@ -20,6 +20,16 @@ const graph = ref<VNetworkGraphInstance | null>(null)
 const nodes = computed(() => unref(dataset)?.nodes ?? {})
 const edges = computed(() => unref(dataset)?.edges ?? {})
 
+const getNodeLabel = (node: Node): string => {
+  const { type, name = '', missingLifecycle, eol, phaseOut } = node
+  const label: string[] = [name]
+  if (type === 'ITComponent') {
+    if (missingLifecycle) label.push('Missing Lifecycle')
+    else if (eol) label.push(`eol: ${eol}`)
+    else if (phaseOut) label.push(`phaseOut: ${phaseOut}`)
+  }
+  return label.join('\n')
+}
 const configs = defineConfigs({
   view: {
     autoPanAndZoomOnLoad: 'fit-content',
@@ -34,7 +44,7 @@ const configs = defineConfigs({
       visible: true,
       direction: 'south',
       directionAutoAdjustment: true,
-      text: ({ name, eol }) => `${name}${eol !== null ? `\neol: ${eol}` : ''}`
+      text: getNodeLabel
     }
   },
   edge: {
