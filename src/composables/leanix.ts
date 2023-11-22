@@ -264,7 +264,6 @@ const getITComponentDependencies = (
   return dependencies
 }
 
-// TODO: we'll just filter out edges that are not active for the ref date
 export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph => {
   const { edges, nodes } = graph
   const filteredEdges = Object.values(edges).reduce((accumulator: { [edgeId: string]: IGraphEdge }, edge) => {
@@ -336,7 +335,8 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
     if (aggregatedLifecyclePhase === -1)
       throw new Error(`error while aggregating lifecycle phase for itComponent ${id}`)
     itComponent.aggregatedLifecyclePhase = aggregatedLifecyclePhase as LifecyclePhase
-    const node = filteredNodes[itComponent.id] as IITComponent
+    const node = (filteredNodes[itComponent.id] as IITComponent) ?? null
+    if (node === null) throw new Error(`error while setting lifecycle value for itComponent ${id}`)
     node.lifecycle = lifecyclePhase
     node.aggregatedLifecycle = aggregatedLifecyclePhase
   })
