@@ -1,40 +1,73 @@
-import { DataSet } from 'vis-data/peer'
-import { Network } from 'vis-network/peer'
-import { Edge } from 'vis-network'
-import { ref, unref, computed } from 'vue'
-import 'vis-network/styles/vis-network.css'
+import * as d3 from 'd3'
 
 // Function that initializes network given the information given
-const useNodes = () => {
-  // Creates an array of nodes, later on I want to make this dynamic
-  const createNodes = new DataSet([
-    { id: 1, label: 'Application 1' },
-    { id: 2, label: 'Application 2' },
-    { id: 3, label: 'Application 3' },
-    { id: 4, label: 'Application 4' },
-    { id: 5, label: 'Application 5' }
-  ])
+const useNodes = (el: HTMLElement) => {
+  // dimensions for network graph
+  const margin = { top: 10, right: 30, bottom: 30, left: 40 },
+    width = 400 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom
 
-  // DataSet accepts items that have an optional id, so I used Edge instead
-  const createEdges: Edge[] = [
-    { from: 1, to: 3 },
-    { from: 1, to: 2 },
-    { from: 2, to: 4 },
-    { from: 2, to: 5 },
-    { from: 3, to: 3 }
-  ]
+  const svg = d3
+    .select(el)
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
+    .append('g')
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-  const container = document.getElementById('mynetwork')
+  // Loading data, we will later replace this with the GraphQL query
+  d3.json('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_network.json', function (data) {
+    // Initialize the links
+    const link = svg.selectAll('line').data(data.links).enter().append('line').style('stroke', '#aaa')
 
-  const data = {
-    nodes: createNodes,
-    edges: createEdges
-  }
+    // Initialize the nodes
+    const node = svg
+      .selectAll('circle')
+      .data(data.nodes)
+      .enter()
+      .append('circle')
+      .attr('r', 20)
+      .style('fill', '#69b3a2')
 
-  const options = {}
-  const network = new Network(container, data, options)
+    // Let's list the force we wanna apply on the network
+    const simulation = d3
+      .forceSimulation(data.nodes) // Force algorithm is applied to data.nodes
+      .force(
+        'link',
+        d3
+          .forceLink() // This force provides links between nodes
+          .id(function (d) {
+            return d.id
+          }) // This provide  the id of a node
+          .links(data.links) // and this the list of links
+      )
+      .force('charge', d3.forceManyBody().strength(-400)) // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force('center', d3.forceCenter(width / 2, height / 2)) // This force attracts nodes to the center of the svg area
+      .on('end', ticked)
 
-  return {}
+    function ticked() {
+      link
+        .attr('x1', function (d) {
+          return d.source.x
+        })
+        .attr('y1', function (d) {
+          return d.source.y
+        })
+        .attr('x2', function (d) {
+          return d.target.x
+        })
+        .attr('y2', function (d) {
+          return d.target.y
+        })
+
+      node
+        .attr('cx', function (d) {
+          return d.x + 6
+        })
+        .attr('cy', function (d) {
+          return d.y - 6
+        })
+    }
+  })
 }
-
 export { useNodes }

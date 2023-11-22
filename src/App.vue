@@ -1,23 +1,19 @@
 <template>
-  <div class="flex flex-col">
-    <div class="font-bold sticky top-0 bg-white py-2">
-      {{ applications.length }} Application{{ applications.length === 1 ? '' : 's' }}
-    </div>
-    <div class="flex flex-wrap gap-2 text-xs">
-      <div v-for="application in applications" :key="application.id" class="shadow rounded p-1 bg-gray-100">
-        {{ application.name }}
-      </div>
-    </div>
-  </div>
-  <div id="mynetwork"></div>
+  <div ref="containerEl" class="h-screen" />
 </template>
 
-<script lang="ts" setup>
+<script src="https://d3js.org/d3.v6.js" lang="ts" setup>
+import { ref, unref, onMounted } from 'vue'
 import { useApi } from '@/composables/useApi'
 import { useNodes } from '@/composables/useNodes'
-
-
 const { initializeReport, applications } = useApi()
-initializeReport()
 
+const containerEl = ref<HTMLElement | null>(null)
+
+initializeReport()
+onMounted(() => {
+  const el = unref(containerEl)
+  if (el === null) throw new Error('no container element found')
+  useNodes(el)
+})
 </script>
