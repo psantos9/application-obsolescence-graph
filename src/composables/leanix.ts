@@ -257,4 +257,11 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
   return { nodes: filteredNodes, edges: filteredEdges }
 }
 
+export interface IITComponentIndex {
+  [itComponentId: string]: {
+    missingLifecycle: boolean
+    eol: number | null
+    phaseOut: number | null
+  }
+}
 export const computeApplicationObsolescenceRisk = (applicationId: string, refDate: number) => {}

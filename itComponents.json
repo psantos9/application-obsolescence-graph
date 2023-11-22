@@ -3,7 +3,7 @@
     "id": "b039313d-3ada-4aa0-af66-58c87faedaf9",
     "name": "IT Component A",
     "level": 1,
-    "missingLifecycle": false,
+    "missingLifecycle": true,
     "children": [
       {
         "id": "740d2ec9-ce69-46d9-aec9-c9e160b5d380",
