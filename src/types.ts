@@ -34,6 +34,14 @@ export interface IGraphNode {
   missingLifecycle?: boolean
   eol?: number
   phaseOut?: number
+  aggregatedObsolescenceRisk:
+    | 'missingLifecycleInformation'
+    | 'unaddressedEol'
+    | 'unaddressedPhaseOut'
+    | 'missintITComponentInfo'
+    | 'riskAccepted'
+    | 'riskAddresssed'
+    | 'noRisk'
 }
 
 export interface IGraphEdge {
