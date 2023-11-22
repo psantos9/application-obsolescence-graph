@@ -1,6 +1,7 @@
-[
-  {
+{
+  "17ff3c9d-df5d-4738-a67e-ef7269cb667f": {
     "id": "17ff3c9d-df5d-4738-a67e-ef7269cb667f",
+    "type": "Application",
     "name": "Application A",
     "level": 1,
     "children": [],
@@ -10,12 +11,13 @@
         "factSheetId": "b039313d-3ada-4aa0-af66-58c87faedaf9",
         "activeFrom": null,
         "activeUntil": null,
-        "obsolescenceRiskStatus": null
+        "obsolescenceRiskStatus": "riskAccepted"
       }
     ]
   },
-  {
+  "49beaa4f-5ce5-4bf6-9351-e6921cdda782": {
     "id": "49beaa4f-5ce5-4bf6-9351-e6921cdda782",
+    "type": "Application",
     "name": "Application B",
     "level": 1,
     "children": [],
@@ -29,4 +31,4 @@
       }
     ]
   }
-]
+}

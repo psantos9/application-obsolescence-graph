@@ -6,9 +6,26 @@ import type {
   IRelatedFactSheet,
   IRelatedITComponent,
   IGraphEdge,
-  IGraphNode,
+  TGraphNode,
   IGraph
 } from '@/types'
+
+export enum LifecyclePhase {
+  UNDEFINED,
+  END_OF_LIFE,
+  PHASE_OUT,
+  OTHER
+}
+
+export enum AggregatedObsolescenceRisk {
+  MISSING_LIFECYCLE_INFO,
+  UNADDRESSED_END_OF_LIFE,
+  UNADDRESSED_PHASE_OUT,
+  MISSING_IT_COMPONENT_INFO,
+  RISK_ACCEPTED,
+  RISK_ADDRESSED,
+  NO_RISK
+}
 
 export type TLXGraphQLApiClientFn = (query: string, variables?: string) => Promise<any>
 
@@ -46,6 +63,7 @@ export const mapApplication = (node: any): IApplication => {
   )
   const application: IApplication = {
     id,
+    type: 'Application',
     name,
     level,
     children,
@@ -66,14 +84,17 @@ export const mapITComponent = (node: any): IITComponent => {
   const requires: IRelatedFactSheet[] = relToRequires.edges.map(({ node }: any) => mapRelatedFactSheet(node))
   const itComponent: IITComponent = {
     id,
+    type: 'ITComponent',
     name,
     level,
     missingLifecycle,
+    eol,
+    phaseOut,
     children,
-    requires
+    requires,
+    lifecycle: null,
+    aggregatedLifecycle: null
   }
-  if (eol !== null) itComponent.eol = eol
-  if (phaseOut !== null) itComponent.phaseOut = phaseOut
   return itComponent
 }
 
@@ -121,37 +142,43 @@ export const fetchFactSheets = async <T>(
 export const fetchApplications = async (
   executeGraphQL: TLXGraphQLApiClientFn,
   updateFn?: (params: { totalCount: number; downloaded: number }) => void
-) => {
+): Promise<{ [applicationId: string]: IApplication }> => {
   const query = QueryApplications.loc?.source.body as string
   const mapFn = mapApplication
   const applications = await fetchFactSheets(executeGraphQL, query, mapFn, updateFn)
-  return applications
+  const applicationIndex = applications.reduce((accumulator, application) => {
+    accumulator[application.id] = application
+    return accumulator
+  }, {} as { [applicationId: string]: IApplication })
+  return applicationIndex
 }
 
 export const fetchITComponents = async (
   executeGraphQL: TLXGraphQLApiClientFn,
   updateFn?: (params: { totalCount: number; downloaded: number }) => void
-) => {
+): Promise<{ [itComponentId: string]: IITComponent }> => {
   const query = QueryITComponents.loc?.source.body as string
   const mapFn = mapITComponent
   const itComponents = await fetchFactSheets(executeGraphQL, query, mapFn, updateFn)
-  return itComponents
+  const itComponentIndex = itComponents.reduce((accumulator, itComponent) => {
+    accumulator[itComponent.id] = itComponent
+    return accumulator
+  }, {} as { [itComponentId: string]: IITComponent })
+  return itComponentIndex
 }
 
-export const generateGraph = (params: { applications: IApplication[]; itComponents: IITComponent[] }): IGraph => {
-  const { applications, itComponents } = params
+export const generateGraph = (params: {
+  applicationIndex: Record<string, IApplication>
+  itComponentIndex: Record<string, IITComponent>
+}): IGraph => {
+  const { applicationIndex, itComponentIndex } = params
 
-  const nodes: { [nodeId: string]: IGraphNode } = {}
+  const nodes: { [nodeId: string]: TGraphNode } = {}
   const edges: { [edgeId: string]: IGraphEdge } = {}
 
-  applications.forEach((application) => {
-    const { id, name, itComponents, children } = application
-    const node: IGraphNode = {
-      id,
-      type: 'Application',
-      name
-    }
-    nodes[node.id] = node
+  Object.values(applicationIndex).forEach((application) => {
+    const { id, itComponents, children } = application
+    nodes[id] = application
     children.forEach((child) => {
       const { id, factSheetId, activeFrom, activeUntil } = child
       const edge: IGraphEdge = {
@@ -178,17 +205,9 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
       edges[edge.id] = edge
     })
   })
-  itComponents.forEach((itComponent) => {
-    const { id, name, missingLifecycle, eol, phaseOut, children, requires } = itComponent
-    const node: IGraphNode = {
-      id,
-      type: 'ITComponent',
-      name,
-      missingLifecycle,
-      eol,
-      phaseOut
-    }
-    nodes[node.id] = node
+  Object.values(itComponentIndex).forEach((itComponent) => {
+    const { id, children, requires } = itComponent
+    nodes[id] = itComponent
 
     children.forEach((child) => {
       const { id, factSheetId, activeFrom, activeUntil } = child
@@ -219,12 +238,30 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
 }
 
 export const loadGraph = async (executeGraphQL: TLXGraphQLApiClientFn) => {
-  const [applications, itComponents] = await Promise.all([
+  const [applicationIndex, itComponentIndex] = await Promise.all([
     fetchApplications(executeGraphQL),
     fetchITComponents(executeGraphQL)
   ])
-  const graph = generateGraph({ applications, itComponents })
+  const graph = generateGraph({ applicationIndex, itComponentIndex })
   return graph
+}
+
+// Recursive method for getting the related factsheet ids of an ITComponent (children, requires)
+const getITComponentDependencies = (
+  relations: IRelatedFactSheet[],
+  dependencies: Set<string>,
+  itComponentIndex: Record<string, IITComponent>
+) => {
+  relations.forEach(({ factSheetId }) => {
+    if (!dependencies.has(factSheetId)) {
+      dependencies.add(factSheetId)
+      const itComponent = itComponentIndex[factSheetId] ?? null
+      if (itComponent === null) throw new Error(`invalid it component id ${factSheetId}`)
+      const { children, requires } = itComponent
+      getITComponentDependencies(Array.from([...children, ...requires]), dependencies, itComponentIndex)
+    }
+  })
+  return dependencies
 }
 
 // TODO: we'll just filter out edges that are not active for the ref date
@@ -249,19 +286,89 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
     {}
   )
 
-  const filteredNodes = Object.values(nodes).reduce((accumulator: { [nodeId: string]: IGraphNode }, node) => {
-    if (node.type === 'Application') accumulator[node.id] = node
-    else if (node.type === 'ITComponent' && validNodeIndex[node.id]) accumulator[node.id] = node
+  const applicationIndex: Record<string, IApplication> = {}
+  const itComponentIndex: Record<string, IITComponent> = {}
+
+  const filteredNodes = Object.values(nodes).reduce((accumulator: { [nodeId: string]: TGraphNode }, node) => {
+    if (node.type === 'Application') {
+      accumulator[node.id] = node
+      applicationIndex[node.id] = node
+    } else if (node.type === 'ITComponent' && validNodeIndex[node.id]) {
+      accumulator[node.id] = node
+      itComponentIndex[node.id] = node
+    }
     return accumulator
   }, {})
+
+  // First run of indexing to get the set of related factsheets (children and requires) for each ITComponent
+  const itComponentLifecycleAndDependenciesIndex = Object.values(itComponentIndex).reduce(
+    (accumulator, itComponent) => {
+      const { id, missingLifecycle, eol, phaseOut, children, requires } = itComponent
+      let lifecyclePhase = LifecyclePhase.OTHER
+      if (missingLifecycle) lifecyclePhase = LifecyclePhase.UNDEFINED
+      else if (typeof eol === 'number' && eol < refDate) lifecyclePhase = LifecyclePhase.END_OF_LIFE
+      else if (typeof phaseOut === 'number' && phaseOut < refDate) lifecyclePhase = LifecyclePhase.PHASE_OUT
+      const dependencies = Array.from(
+        getITComponentDependencies(Array.from([...children, ...requires]), new Set(), itComponentIndex)
+      )
+      accumulator[id] = { id, lifecyclePhase, aggregatedLifecyclePhase: null, dependencies }
+      return accumulator
+    },
+    {} as Record<
+      string,
+      {
+        id: string
+        lifecyclePhase: LifecyclePhase
+        aggregatedLifecyclePhase: null | LifecyclePhase
+        dependencies: string[]
+      }
+    >
+  )
+
+  // On the second run of indexing we'll aggregate the lifecycle for each IT Component, given its own and
+  // the lifecycle of the related/underlying IT Components
+  Object.values(itComponentLifecycleAndDependenciesIndex).forEach((itComponent) => {
+    const { id, lifecyclePhase, dependencies } = itComponent
+    const dependenciesLifecyclePhases = dependencies.map(
+      (factSheetId) => itComponentLifecycleAndDependenciesIndex[factSheetId]?.lifecyclePhase ?? -1
+    )
+    const aggregatedLifecyclePhase = Math.min(lifecyclePhase, ...dependenciesLifecyclePhases)
+    if (aggregatedLifecyclePhase === -1)
+      throw new Error(`error while aggregating lifecycle phase for itComponent ${id}`)
+    itComponent.aggregatedLifecyclePhase = aggregatedLifecyclePhase as LifecyclePhase
+    const node = filteredNodes[itComponent.id] as IITComponent
+    node.lifecycle = lifecyclePhase
+    node.aggregatedLifecycle = aggregatedLifecyclePhase
+  })
   return { nodes: filteredNodes, edges: filteredEdges }
 }
 
-export interface IITComponentIndex {
-  [itComponentId: string]: {
-    missingLifecycle: boolean
-    eol: number | null
-    phaseOut: number | null
-  }
+export const getITComponentIndexFromGraph = (
+  graph: IGraph,
+  itComponentIndex: { [id: string]: IITComponent },
+  applicationIndex: { [id: string]: IApplication },
+  refDate: number
+) => {
+  const indexes = Object.values(graph.nodes).reduce(
+    (accumulator, node) => {
+      if (node.type === 'ITComponent') {
+        const itComponent = itComponentIndex[node.id] ?? null
+        if (itComponent === null) throw new Error(`invalid it component id ${node.id}`)
+        accumulator.itComponents[itComponent.id] = itComponent
+      } else if (node.type === 'Application') {
+        const application = applicationIndex[node.id] ?? null
+        if (application === null) throw new Error(`invalid application id ${node.id}`)
+        accumulator.applications[application.id] = application
+      }
+      return accumulator
+    },
+    { itComponents: {}, applications: {} } as {
+      itComponents: Record<string, IITComponent>
+      applications: Record<string, IApplication>
+    }
+  )
+
+  console.log('GRAPH', graph, indexes)
 }
+
 export const computeApplicationObsolescenceRisk = (applicationId: string, refDate: number) => {}

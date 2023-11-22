@@ -8,6 +8,7 @@ query Applications($after: String, $first: Int) {
     edges {
       node {
         id
+        type
         name
         level
         ... on Application {

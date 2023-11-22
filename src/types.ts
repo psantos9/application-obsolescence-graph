@@ -1,3 +1,5 @@
+import type { LifecyclePhase } from '@/composables/leanix'
+
 export interface IRelatedFactSheet {
   id: string
   factSheetId: string
@@ -17,32 +19,21 @@ export interface IFactSheet {
 }
 
 export interface IApplication extends IFactSheet {
+  type: 'Application'
   itComponents: IRelatedITComponent[]
 }
 
 export interface IITComponent extends IFactSheet {
+  type: 'ITComponent'
   missingLifecycle: boolean
-  eol?: number
-  phaseOut?: number
+  eol: number | null
+  phaseOut: number | null
   requires: IRelatedFactSheet[]
+  lifecycle: LifecyclePhase | null
+  aggregatedLifecycle: LifecyclePhase | null
 }
 
-export interface IGraphNode {
-  id: string
-  type: 'Application' | 'ITComponent'
-  name: string
-  missingLifecycle?: boolean
-  eol?: number
-  phaseOut?: number
-  aggregatedObsolescenceRisk:
-    | 'missingLifecycleInformation'
-    | 'unaddressedEol'
-    | 'unaddressedPhaseOut'
-    | 'missintITComponentInfo'
-    | 'riskAccepted'
-    | 'riskAddresssed'
-    | 'noRisk'
-}
+export type TGraphNode = IITComponent | IApplication
 
 export interface IGraphEdge {
   id: string
@@ -55,6 +46,6 @@ export interface IGraphEdge {
 }
 
 export interface IGraph {
-  nodes: { [nodeId: string]: IGraphNode }
+  nodes: { [nodeId: string]: TGraphNode }
   edges: { [edgeId: string]: IGraphEdge }
 }

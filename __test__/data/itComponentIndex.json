@@ -1,9 +1,12 @@
-[
-  {
+{
+  "b039313d-3ada-4aa0-af66-58c87faedaf9": {
     "id": "b039313d-3ada-4aa0-af66-58c87faedaf9",
+    "type": "ITComponent",
     "name": "IT Component A",
     "level": 1,
     "missingLifecycle": true,
+    "eol": null,
+    "phaseOut": null,
     "children": [
       {
         "id": "740d2ec9-ce69-46d9-aec9-c9e160b5d380",
@@ -21,21 +24,26 @@
       }
     ]
   },
-  {
+  "95308072-8611-4b7f-ac5d-ad90fc792940": {
     "id": "95308072-8611-4b7f-ac5d-ad90fc792940",
+    "type": "ITComponent",
     "name": "IT Component AA",
     "level": 2,
     "missingLifecycle": false,
+    "eol": null,
+    "phaseOut": null,
     "children": [],
     "requires": []
   },
-  {
+  "c8c6a682-09cf-45ad-b70c-c932ffe59fcf": {
     "id": "c8c6a682-09cf-45ad-b70c-c932ffe59fcf",
+    "type": "ITComponent",
     "name": "IT Component C",
     "level": 1,
     "missingLifecycle": false,
+    "eol": 20240131,
+    "phaseOut": null,
     "children": [],
-    "requires": [],
-    "eol": 20240131
+    "requires": []
   }
-]
+}

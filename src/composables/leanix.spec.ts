@@ -1,7 +1,13 @@
 import { describe, expect, test, beforeAll, afterAll, beforeEach } from 'vitest'
 import { Authenticator, GraphQLClient } from 'leanix-js'
 import { writeFile } from 'node:fs/promises'
-import { fetchApplications, fetchITComponents, generateGraph } from '@/composables/leanix'
+import {
+  fetchApplications,
+  fetchITComponents,
+  generateGraph,
+  getSubGraphForRefDate,
+  getITComponentIndexFromGraph
+} from '@/composables/leanix'
 import type { IApplication, IITComponent } from '@/types'
 const lxr = require('../../lxr.json')
 
@@ -31,22 +37,23 @@ describe('leanix.ts', () => {
     ctx.executeGraphQL = graphQLClient.executeGraphQL.bind(graphQLClient)
   })
 
-  test<LocalTestContext>('loads applications', async (ctx) => {
-    const applications = await fetchApplications(ctx.executeGraphQL)
-    writeFile('applications.json', JSON.stringify(applications, null, 2))
-    console.log(applications)
+  test.skip<LocalTestContext>('loads applications', async (ctx) => {
+    const applicationIndex = await fetchApplications(ctx.executeGraphQL)
+    writeFile('applicationIndex.json', JSON.stringify(applicationIndex, null, 2))
   }, 100000)
 
-  test<LocalTestContext>('loads it components', async (ctx) => {
-    const itComponents = await fetchITComponents(ctx.executeGraphQL)
-    writeFile('itComponents.json', JSON.stringify(itComponents, null, 2))
-    console.log(itComponents)
+  test.skip<LocalTestContext>('loads it components', async (ctx) => {
+    const itComponentIndex = await fetchITComponents(ctx.executeGraphQL)
+    writeFile('itComponentIndex.json', JSON.stringify(itComponentIndex, null, 2))
   }, 100000)
 
   test<LocalTestContext>('computes the obsolescence risk for an application', async () => {
-    const applications = require('../../__test__/data/applications.json') as IApplication[]
-    const itComponents = require('../../__test__/data/itComponents.json') as IITComponent[]
-    const graph = generateGraph({ applications, itComponents })
-    console.log(graph)
+    const applicationIndex = require('../../__test__/data/applicationIndex.json') as Record<string, IApplication>
+    const itComponentIndex = require('../../__test__/data/itComponentIndex.json') as Record<string, IITComponent>
+    const graph = generateGraph({ applicationIndex, itComponentIndex })
+    const refDate = 20231122
+    const subGraph = getSubGraphForRefDate(graph, refDate)
+    const a = getITComponentIndexFromGraph(subGraph, itComponentIndex, applicationIndex, 20231122)
+    console.log(a)
   }, 100000)
 })
