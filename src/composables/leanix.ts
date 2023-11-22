@@ -310,7 +310,7 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
       const dependencies = Array.from(
         getITComponentDependencies(Array.from([...children, ...requires]), new Set(), itComponentIndex)
       )
-      accumulator[id] = { id, lifecyclePhase, aggregatedLifecyclePhase: null, dependencies }
+      accumulator[id] = { id, lifecyclePhase, dependencies }
       return accumulator
     },
     {} as Record<
@@ -318,7 +318,6 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
       {
         id: string
         lifecyclePhase: LifecyclePhase
-        aggregatedLifecyclePhase: null | LifecyclePhase
         dependencies: string[]
       }
     >
@@ -334,7 +333,6 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
     const aggregatedLifecyclePhase = Math.min(lifecyclePhase, ...dependenciesLifecyclePhases)
     if (aggregatedLifecyclePhase === -1)
       throw new Error(`error while aggregating lifecycle phase for itComponent ${id}`)
-    itComponent.aggregatedLifecyclePhase = aggregatedLifecyclePhase as LifecyclePhase
     const node = (filteredNodes[itComponent.id] as IITComponent) ?? null
     if (node === null) throw new Error(`error while setting lifecycle value for itComponent ${id}`)
     node.lifecycle = lifecyclePhase
