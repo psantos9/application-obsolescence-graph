@@ -30,6 +30,7 @@ const getNodeLabel = (node: Node): string => {
   }
   return label.join('\n')
 }
+
 const configs = defineConfigs({
   view: {
     autoPanAndZoomOnLoad: 'fit-content',
