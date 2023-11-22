@@ -1,15 +1,43 @@
 import { ref, unref, computed } from 'vue'
 import type { IGraph } from '@/types'
 import '@leanix/reporting'
-import { format } from 'date-fns'
+import { format, addMonths, parseISO } from 'date-fns'
 import { loadGraph, getSubGraphForRefDate } from '@/composables/leanix'
 
 const graph = ref<IGraph>({ edges: {}, nodes: {} })
-const refDate = ref(parseInt(format(new Date(), 'yyyyMMdd')))
+const refDate = ref(new Date())
+
+const getUIConfiguration = (date: Date): lxr.UIMinimalConfiguration => ({
+  timeline: {
+    type: 'default',
+    range: {
+      start: addMonths(date, -6).toISOString(),
+      end: addMonths(date, 6).toISOString()
+    },
+    value: {
+      dates: [unref(refDate).toISOString()]
+    }
+  }
+})
 
 const initializeReport = async () => {
   await lx.init()
-  const config: lxr.ReportConfiguration = {}
+  const config: lxr.ReportConfiguration = {
+    ui: {
+      ...getUIConfiguration(unref(refDate)),
+      update: ({
+        timeline: {
+          // @ts-ignore
+          value: {
+            dates: [date]
+          }
+        }
+      }) => {
+        refDate.value = date === 'today' ? new Date() : parseISO(date)
+        return {}
+      }
+    }
+  }
   await lx.ready(config)
 }
 
@@ -54,7 +82,7 @@ const useApi = () => {
       get: () => unref(refDate),
       set: (value) => (refDate.value = value)
     }),
-    graph: computed(() => getSubGraphForRefDate(unref(graph), unref(refDate))),
+    graph: computed(() => getSubGraphForRefDate(unref(graph), parseInt(format(unref(refDate), 'yyyyMMdd')))),
     initializeReport,
     loadDataset,
     openFactSheetSidePane
