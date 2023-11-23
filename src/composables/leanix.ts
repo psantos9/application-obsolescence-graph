@@ -374,11 +374,20 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
   // edge in our subgraph
   const filteredNodes = Object.values(nodes).reduce((accumulator: { [nodeId: string]: TGraphNode }, node) => {
     if (node.type === 'Application') {
-      accumulator[node.id] = node
-      applicationIndex[node.id] = node
+      const application = { ...node }
+      const { id, children, itComponents } = application
+      application.children = children.filter(({ id }) => filteredEdges[id] ?? false)
+      application.itComponents = itComponents.filter(({ id }) => filteredEdges[id] ?? false)
+      accumulator[id] = application
+      applicationIndex[id] = application
     } else if (node.type === 'ITComponent' && validNodeIndex[node.id]) {
-      accumulator[node.id] = node
-      itComponentIndex[node.id] = node
+      const itComponent = { ...node }
+      const { id, children, requires } = itComponent
+      itComponent.children = children.filter(({ id }) => filteredEdges[id] ?? false)
+      itComponent.requires = requires.filter(({ id }) => filteredEdges[id] ?? false)
+
+      accumulator[id] = itComponent
+      itComponentIndex[id] = itComponent
     }
     return accumulator
   }, {})
