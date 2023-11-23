@@ -4,7 +4,14 @@
     "type": "Application",
     "name": "Application A",
     "level": 1,
-    "children": [],
+    "children": [
+      {
+        "id": "d2827c7d-e2c9-4159-a2ec-f28c3f165596",
+        "factSheetId": "31d88a2d-2234-40b1-b6af-2ca44ffc0210",
+        "activeFrom": null,
+        "activeUntil": null
+      }
+    ],
     "itComponents": [
       {
         "id": "5b977217-ffa6-4809-ace2-f3db70294154",
@@ -14,6 +21,29 @@
         "obsolescenceRiskStatus": "riskAccepted"
       }
     ]
+  },
+  "31d88a2d-2234-40b1-b6af-2ca44ffc0210": {
+    "id": "31d88a2d-2234-40b1-b6af-2ca44ffc0210",
+    "type": "Application",
+    "name": "Application AA",
+    "level": 2,
+    "children": [
+      {
+        "id": "d83c12a5-f821-40d4-b345-bc1c155e6532",
+        "factSheetId": "b6927953-c09c-46d3-813d-2c477a4c29d1",
+        "activeFrom": null,
+        "activeUntil": null
+      }
+    ],
+    "itComponents": []
+  },
+  "b6927953-c09c-46d3-813d-2c477a4c29d1": {
+    "id": "b6927953-c09c-46d3-813d-2c477a4c29d1",
+    "type": "Application",
+    "name": "Application AAA",
+    "level": 3,
+    "children": [],
+    "itComponents": []
   },
   "49beaa4f-5ce5-4bf6-9351-e6921cdda782": {
     "id": "49beaa4f-5ce5-4bf6-9351-e6921cdda782",

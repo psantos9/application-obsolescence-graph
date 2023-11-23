@@ -24,6 +24,8 @@ export interface IFactSheet {
 export interface IApplication extends IFactSheet {
   type: 'Application'
   itComponents: IRelatedITComponent[]
+  aggregatedObsolescenceRisk: AggregatedObsolescenceRisk | null
+  aggregatedObsolescenceRiskKey: TAggregatedObsolescenceRisk | null
 }
 
 export interface IITComponent extends IFactSheet {
@@ -32,8 +34,10 @@ export interface IITComponent extends IFactSheet {
   eol: number | null
   phaseOut: number | null
   requires: IRelatedFactSheet[]
-  lifecycle: TLifecyclePhase | null
-  aggregatedLifecycle: TLifecyclePhase | null
+  lifecycle: LifecyclePhase | null
+  lifecycleKey: TLifecyclePhase | null
+  aggregatedLifecycle: LifecyclePhase | null
+  aggregatedLifecycleKey: TLifecyclePhase | null
 }
 
 export type TGraphNode = IITComponent | IApplication

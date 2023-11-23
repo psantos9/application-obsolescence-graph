@@ -20,10 +20,10 @@ export enum LifecyclePhase {
 }
 
 export enum AggregatedObsolescenceRisk {
+  missingITComponent,
   missingLifecycle,
   unaddressedEndOfLife,
   unaddressedPhaseOut,
-  missingITComponent,
   riskAccepted,
   riskAddressed,
   noRisk
@@ -75,7 +75,9 @@ export const mapApplication = (node: any): IApplication => {
     name,
     level,
     children,
-    itComponents
+    itComponents,
+    aggregatedObsolescenceRisk: null,
+    aggregatedObsolescenceRiskKey: null
   }
   return application
 }
@@ -101,7 +103,9 @@ export const mapITComponent = (node: any): IITComponent => {
     children,
     requires,
     lifecycle: null,
-    aggregatedLifecycle: null
+    lifecycleKey: null,
+    aggregatedLifecycle: null,
+    aggregatedLifecycleKey: null
   }
   return itComponent
 }
@@ -272,8 +276,77 @@ const getITComponentDependencies = (
   return dependencies
 }
 
+const computeAggregatedObsolescenceRiskForApplication = (
+  application: IApplication,
+  applicationIndex: Record<string, IApplication>,
+  itComponentIndex: Record<string, IITComponent>
+): AggregatedObsolescenceRisk => {
+  const { id, itComponents, children } = application
+  if (itComponents.length === 0) return AggregatedObsolescenceRisk.missingITComponent
+  const childrenAggregatedObsolescenceRisk = Math.min(
+    ...children.map(({ factSheetId }) => applicationIndex?.[factSheetId]?.aggregatedObsolescenceRisk ?? -1)
+  )
+  if (childrenAggregatedObsolescenceRisk === -1)
+    throw new Error(`error while aggregating children for application ${id}`)
+  else if (childrenAggregatedObsolescenceRisk === AggregatedObsolescenceRisk.missingITComponent)
+    return AggregatedObsolescenceRisk.missingITComponent
+
+  const aggregatedObsolescenceRiskFromITComponents = itComponents.map(({ factSheetId, obsolescenceRiskStatus }) => {
+    const aggregatedLifecycle = itComponentIndex[factSheetId]?.aggregatedLifecycle ?? null
+    if (aggregatedLifecycle === null) throw new Error(`could not find itcomponent ${factSheetId}`)
+    let aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.noRisk
+    if (aggregatedLifecycle < LifecyclePhase.other) {
+      if (obsolescenceRiskStatus === 'riskAccepted')
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.riskAccepted
+      else if (obsolescenceRiskStatus === 'riskAddressed')
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.riskAddressed
+      else if (aggregatedLifecycle === LifecyclePhase.undefined)
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.missingLifecycle
+      else if (aggregatedLifecycle === LifecyclePhase.phaseOut)
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.unaddressedPhaseOut
+      else if (aggregatedLifecycle === LifecyclePhase.eol)
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.unaddressedEndOfLife
+    }
+    return aggregatedObsolescenceRisk
+  })
+  const aggregatedObsolescenceRisk = Math.min(...aggregatedObsolescenceRiskFromITComponents)
+  return aggregatedObsolescenceRisk
+}
+
+const computeAggregatedObsolescenceRiskForApplications = (
+  nodes: Record<string, TGraphNode>
+): Record<string, TGraphNode> => {
+  const { applicationIndex, itComponentIndex } = Object.values(nodes).reduce(
+    (accumulator, node) => {
+      if (node.type === 'Application') accumulator.applicationIndex[node.id] = node
+      else if (node.type === 'ITComponent') accumulator.itComponentIndex[node.id] = node
+      return accumulator
+    },
+    {
+      applicationIndex: {},
+      itComponentIndex: {}
+    } as { applicationIndex: Record<string, IApplication>; itComponentIndex: Record<string, IITComponent> }
+  )
+
+  Object.values(applicationIndex)
+    // Sort applications by ascending order of hierarchy (e.g. L3 -> L2 -> L1)
+    .sort(({ level: A }, { level: B }) => (A < B ? 1 : A > B ? -1 : 0))
+    .forEach((application) => {
+      const aggregatedObsolescenceRisk = computeAggregatedObsolescenceRiskForApplication(
+        application,
+        applicationIndex,
+        itComponentIndex
+      )
+      application.aggregatedObsolescenceRisk = aggregatedObsolescenceRisk
+      application.aggregatedObsolescenceRiskKey = getAggregatedObsolescenceRiskLabel(aggregatedObsolescenceRisk)
+    })
+  return nodes
+}
+
 export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph => {
   const { edges, nodes } = graph
+
+  // we'll filter out the edges from the original graph that are inactive for the reference date
   const filteredEdges = Object.values(edges).reduce((accumulator: { [edgeId: string]: IGraphEdge }, edge) => {
     const { activeFrom, activeUntil } = edge
     if (activeFrom === null || refDate >= activeFrom) {
@@ -284,6 +357,7 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
     return accumulator
   }, {})
 
+  // we'll only consider in our subgraph the nodes that are linked by active edges
   const validNodeIndex = Object.values(filteredEdges).reduce(
     (accumulator: Record<string, boolean>, { source, target }) => {
       accumulator[source] = true
@@ -296,6 +370,8 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
   const applicationIndex: Record<string, IApplication> = {}
   const itComponentIndex: Record<string, IITComponent> = {}
 
+  // we'll filter out the ITComponent nodes, from the original graph, that are not linked by an
+  // edge in our subgraph
   const filteredNodes = Object.values(nodes).reduce((accumulator: { [nodeId: string]: TGraphNode }, node) => {
     if (node.type === 'Application') {
       accumulator[node.id] = node
@@ -343,10 +419,14 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
       throw new Error(`error while aggregating lifecycle phase for itComponent ${id}`)
     const node = (filteredNodes[itComponent.id] as IITComponent) ?? null
     if (node === null) throw new Error(`error while setting lifecycle value for itComponent ${id}`)
-    node.lifecycle = getLifecyclePhaseLabel(lifecyclePhase)
-    node.aggregatedLifecycle = getLifecyclePhaseLabel(aggregatedLifecyclePhase)
+    node.lifecycle = lifecyclePhase
+    node.lifecycleKey = getLifecyclePhaseLabel(lifecyclePhase)
+    node.aggregatedLifecycle = aggregatedLifecyclePhase
+    node.aggregatedLifecycleKey = getLifecyclePhaseLabel(aggregatedLifecyclePhase)
   })
+
+  // This method will fill for each 'Application' node its 'aggregatedObsolescenceRisk'
+  // and 'aggregatedObsolescenceRiskKey' field. It mutates the 'filteredNodes' object
+  computeAggregatedObsolescenceRiskForApplications(filteredNodes)
   return { nodes: filteredNodes, edges: filteredEdges }
 }
-
-export const computeApplicationObsolescenceRisk = (applicationId: string, refDate: number) => {}
