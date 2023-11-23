@@ -21,12 +21,29 @@ const nodes = computed(() => unref(dataset)?.nodes ?? {})
 const edges = computed(() => unref(dataset)?.edges ?? {})
 
 const getNodeLabel = (node: Node): string => {
-  const { type, name = '', missingLifecycle, eol, phaseOut } = node
+  const {
+    type,
+    name = '',
+    missingLifecycle,
+    eol,
+    phaseOut,
+    aggregatedObsolescenceRiskKey,
+    lifecycleKey,
+    aggregatedLifecycleKey,
+    children,
+    requires
+  } = node
   const label: string[] = [name]
   if (type === 'ITComponent') {
-    if (missingLifecycle) label.push('Missing Lifecycle')
-    else if (eol) label.push(`eol: ${eol}`)
-    else if (phaseOut) label.push(`phaseOut: ${phaseOut}`)
+    if (missingLifecycle) label.push('missingLifecycle')
+    else {
+      if (children.length + requires.length > 0) label.push(`aggregatedLifecycle: ${aggregatedLifecycleKey}`)
+      label.push(`lifecycle: ${lifecycleKey}`)
+      if (eol) label.push(`eol: ${eol}`)
+      else if (phaseOut) label.push(`phaseOut: ${phaseOut}`)
+    }
+  } else if (type === 'Application') {
+    label.push(aggregatedObsolescenceRiskKey)
   }
   return label.join('\n')
 }

@@ -6,9 +6,34 @@ import type {
   IRelatedFactSheet,
   IRelatedITComponent,
   IGraphEdge,
-  IGraphNode,
-  IGraph
+  TGraphNode,
+  IGraph,
+  TLifecyclePhase,
+  TAggregatedObsolescenceRisk
 } from '@/types'
+
+export enum LifecyclePhase {
+  undefined,
+  eol,
+  phaseOut,
+  other
+}
+
+export enum AggregatedObsolescenceRisk {
+  missingITComponent,
+  missingLifecycle,
+  unaddressedEndOfLife,
+  unaddressedPhaseOut,
+  riskAccepted,
+  riskAddressed,
+  noRisk
+}
+
+export const getLifecyclePhaseLabel = (lifecyclePhase: LifecyclePhase) =>
+  LifecyclePhase[lifecyclePhase] as TLifecyclePhase
+
+export const getAggregatedObsolescenceRiskLabel = (aggregatedObsolescenceRisk: AggregatedObsolescenceRisk) =>
+  AggregatedObsolescenceRisk[aggregatedObsolescenceRisk] as TAggregatedObsolescenceRisk
 
 export type TLXGraphQLApiClientFn = (query: string, variables?: string) => Promise<any>
 
@@ -46,10 +71,13 @@ export const mapApplication = (node: any): IApplication => {
   )
   const application: IApplication = {
     id,
+    type: 'Application',
     name,
     level,
     children,
-    itComponents
+    itComponents,
+    aggregatedObsolescenceRisk: null,
+    aggregatedObsolescenceRiskKey: null
   }
   return application
 }
@@ -66,14 +94,19 @@ export const mapITComponent = (node: any): IITComponent => {
   const requires: IRelatedFactSheet[] = relToRequires.edges.map(({ node }: any) => mapRelatedFactSheet(node))
   const itComponent: IITComponent = {
     id,
+    type: 'ITComponent',
     name,
     level,
     missingLifecycle,
+    eol,
+    phaseOut,
     children,
-    requires
+    requires,
+    lifecycle: null,
+    lifecycleKey: null,
+    aggregatedLifecycle: null,
+    aggregatedLifecycleKey: null
   }
-  if (eol !== null) itComponent.eol = eol
-  if (phaseOut !== null) itComponent.phaseOut = phaseOut
   return itComponent
 }
 
@@ -121,37 +154,43 @@ export const fetchFactSheets = async <T>(
 export const fetchApplications = async (
   executeGraphQL: TLXGraphQLApiClientFn,
   updateFn?: (params: { totalCount: number; downloaded: number }) => void
-) => {
+): Promise<{ [applicationId: string]: IApplication }> => {
   const query = QueryApplications.loc?.source.body as string
   const mapFn = mapApplication
   const applications = await fetchFactSheets(executeGraphQL, query, mapFn, updateFn)
-  return applications
+  const applicationIndex = applications.reduce((accumulator, application) => {
+    accumulator[application.id] = application
+    return accumulator
+  }, {} as { [applicationId: string]: IApplication })
+  return applicationIndex
 }
 
 export const fetchITComponents = async (
   executeGraphQL: TLXGraphQLApiClientFn,
   updateFn?: (params: { totalCount: number; downloaded: number }) => void
-) => {
+): Promise<{ [itComponentId: string]: IITComponent }> => {
   const query = QueryITComponents.loc?.source.body as string
   const mapFn = mapITComponent
   const itComponents = await fetchFactSheets(executeGraphQL, query, mapFn, updateFn)
-  return itComponents
+  const itComponentIndex = itComponents.reduce((accumulator, itComponent) => {
+    accumulator[itComponent.id] = itComponent
+    return accumulator
+  }, {} as { [itComponentId: string]: IITComponent })
+  return itComponentIndex
 }
 
-export const generateGraph = (params: { applications: IApplication[]; itComponents: IITComponent[] }): IGraph => {
-  const { applications, itComponents } = params
+export const generateGraph = (params: {
+  applicationIndex: Record<string, IApplication>
+  itComponentIndex: Record<string, IITComponent>
+}): IGraph => {
+  const { applicationIndex, itComponentIndex } = params
 
-  const nodes: { [nodeId: string]: IGraphNode } = {}
+  const nodes: { [nodeId: string]: TGraphNode } = {}
   const edges: { [edgeId: string]: IGraphEdge } = {}
 
-  applications.forEach((application) => {
-    const { id, name, itComponents, children } = application
-    const node: IGraphNode = {
-      id,
-      type: 'Application',
-      name
-    }
-    nodes[node.id] = node
+  Object.values(applicationIndex).forEach((application) => {
+    const { id, itComponents, children } = application
+    nodes[id] = application
     children.forEach((child) => {
       const { id, factSheetId, activeFrom, activeUntil } = child
       const edge: IGraphEdge = {
@@ -178,17 +217,9 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
       edges[edge.id] = edge
     })
   })
-  itComponents.forEach((itComponent) => {
-    const { id, name, missingLifecycle, eol, phaseOut, children, requires } = itComponent
-    const node: IGraphNode = {
-      id,
-      type: 'ITComponent',
-      name,
-      missingLifecycle,
-      eol,
-      phaseOut
-    }
-    nodes[node.id] = node
+  Object.values(itComponentIndex).forEach((itComponent) => {
+    const { id, children, requires } = itComponent
+    nodes[id] = itComponent
 
     children.forEach((child) => {
       const { id, factSheetId, activeFrom, activeUntil } = child
@@ -219,17 +250,103 @@ export const generateGraph = (params: { applications: IApplication[]; itComponen
 }
 
 export const loadGraph = async (executeGraphQL: TLXGraphQLApiClientFn) => {
-  const [applications, itComponents] = await Promise.all([
+  const [applicationIndex, itComponentIndex] = await Promise.all([
     fetchApplications(executeGraphQL),
     fetchITComponents(executeGraphQL)
   ])
-  const graph = generateGraph({ applications, itComponents })
+  const graph = generateGraph({ applicationIndex, itComponentIndex })
   return graph
 }
 
-// TODO: we'll just filter out edges that are not active for the ref date
+// Recursive method for getting the related factsheet ids of an ITComponent (children, requires)
+const getITComponentDependencies = (
+  relations: IRelatedFactSheet[],
+  dependencies: Set<string>,
+  itComponentIndex: Record<string, IITComponent>
+) => {
+  relations.forEach(({ factSheetId }) => {
+    if (!dependencies.has(factSheetId)) {
+      dependencies.add(factSheetId)
+      const itComponent = itComponentIndex[factSheetId] ?? null
+      if (itComponent === null) throw new Error(`invalid it component id ${factSheetId}`)
+      const { children, requires } = itComponent
+      getITComponentDependencies(Array.from([...children, ...requires]), dependencies, itComponentIndex)
+    }
+  })
+  return dependencies
+}
+
+const computeAggregatedObsolescenceRiskForApplication = (
+  application: IApplication,
+  applicationIndex: Record<string, IApplication>,
+  itComponentIndex: Record<string, IITComponent>
+): AggregatedObsolescenceRisk => {
+  const { id, itComponents, children } = application
+  if (itComponents.length === 0) return AggregatedObsolescenceRisk.missingITComponent
+  const childrenAggregatedObsolescenceRisk = Math.min(
+    ...children.map(({ factSheetId }) => applicationIndex?.[factSheetId]?.aggregatedObsolescenceRisk ?? -1)
+  )
+  if (childrenAggregatedObsolescenceRisk === -1)
+    throw new Error(`error while aggregating children for application ${id}`)
+  else if (childrenAggregatedObsolescenceRisk === AggregatedObsolescenceRisk.missingITComponent)
+    return AggregatedObsolescenceRisk.missingITComponent
+
+  const aggregatedObsolescenceRiskFromITComponents = itComponents.map(({ factSheetId, obsolescenceRiskStatus }) => {
+    const aggregatedLifecycle = itComponentIndex[factSheetId]?.aggregatedLifecycle ?? null
+    if (aggregatedLifecycle === null) throw new Error(`could not find itcomponent ${factSheetId}`)
+    let aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.noRisk
+    if (aggregatedLifecycle < LifecyclePhase.other) {
+      if (obsolescenceRiskStatus === 'riskAccepted')
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.riskAccepted
+      else if (obsolescenceRiskStatus === 'riskAddressed')
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.riskAddressed
+      else if (aggregatedLifecycle === LifecyclePhase.undefined)
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.missingLifecycle
+      else if (aggregatedLifecycle === LifecyclePhase.phaseOut)
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.unaddressedPhaseOut
+      else if (aggregatedLifecycle === LifecyclePhase.eol)
+        aggregatedObsolescenceRisk = AggregatedObsolescenceRisk.unaddressedEndOfLife
+    }
+    return aggregatedObsolescenceRisk
+  })
+  const aggregatedObsolescenceRisk = Math.min(...aggregatedObsolescenceRiskFromITComponents)
+  return aggregatedObsolescenceRisk
+}
+
+const computeAggregatedObsolescenceRiskForApplications = (
+  nodes: Record<string, TGraphNode>
+): Record<string, TGraphNode> => {
+  const { applicationIndex, itComponentIndex } = Object.values(nodes).reduce(
+    (accumulator, node) => {
+      if (node.type === 'Application') accumulator.applicationIndex[node.id] = node
+      else if (node.type === 'ITComponent') accumulator.itComponentIndex[node.id] = node
+      return accumulator
+    },
+    {
+      applicationIndex: {},
+      itComponentIndex: {}
+    } as { applicationIndex: Record<string, IApplication>; itComponentIndex: Record<string, IITComponent> }
+  )
+
+  Object.values(applicationIndex)
+    // Sort applications by ascending order of hierarchy (e.g. L3 -> L2 -> L1)
+    .sort(({ level: A }, { level: B }) => (A < B ? 1 : A > B ? -1 : 0))
+    .forEach((application) => {
+      const aggregatedObsolescenceRisk = computeAggregatedObsolescenceRiskForApplication(
+        application,
+        applicationIndex,
+        itComponentIndex
+      )
+      application.aggregatedObsolescenceRisk = aggregatedObsolescenceRisk
+      application.aggregatedObsolescenceRiskKey = getAggregatedObsolescenceRiskLabel(aggregatedObsolescenceRisk)
+    })
+  return nodes
+}
+
 export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph => {
   const { edges, nodes } = graph
+
+  // we'll filter out the edges from the original graph that are inactive for the reference date
   const filteredEdges = Object.values(edges).reduce((accumulator: { [edgeId: string]: IGraphEdge }, edge) => {
     const { activeFrom, activeUntil } = edge
     if (activeFrom === null || refDate >= activeFrom) {
@@ -240,6 +357,7 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
     return accumulator
   }, {})
 
+  // we'll only consider in our subgraph the nodes that are linked by active edges
   const validNodeIndex = Object.values(filteredEdges).reduce(
     (accumulator: Record<string, boolean>, { source, target }) => {
       accumulator[source] = true
@@ -249,19 +367,66 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
     {}
   )
 
-  const filteredNodes = Object.values(nodes).reduce((accumulator: { [nodeId: string]: IGraphNode }, node) => {
-    if (node.type === 'Application') accumulator[node.id] = node
-    else if (node.type === 'ITComponent' && validNodeIndex[node.id]) accumulator[node.id] = node
+  const applicationIndex: Record<string, IApplication> = {}
+  const itComponentIndex: Record<string, IITComponent> = {}
+
+  // we'll filter out the ITComponent nodes, from the original graph, that are not linked by an
+  // edge in our subgraph
+  const filteredNodes = Object.values(nodes).reduce((accumulator: { [nodeId: string]: TGraphNode }, node) => {
+    if (node.type === 'Application') {
+      accumulator[node.id] = node
+      applicationIndex[node.id] = node
+    } else if (node.type === 'ITComponent' && validNodeIndex[node.id]) {
+      accumulator[node.id] = node
+      itComponentIndex[node.id] = node
+    }
     return accumulator
   }, {})
+
+  // First run of indexing to get the set of related factsheets (children and requires) for each ITComponent
+  const itComponentLifecycleAndDependenciesIndex = Object.values(itComponentIndex).reduce(
+    (accumulator, itComponent) => {
+      const { id, missingLifecycle, eol, phaseOut, children, requires } = itComponent
+      let lifecyclePhase = LifecyclePhase.other
+      if (missingLifecycle) lifecyclePhase = LifecyclePhase.undefined
+      else if (typeof eol === 'number' && eol < refDate) lifecyclePhase = LifecyclePhase.eol
+      else if (typeof phaseOut === 'number' && phaseOut < refDate) lifecyclePhase = LifecyclePhase.phaseOut
+      const dependencies = Array.from(
+        getITComponentDependencies(Array.from([...children, ...requires]), new Set(), itComponentIndex)
+      )
+      accumulator[id] = { id, lifecyclePhase, dependencies }
+      return accumulator
+    },
+    {} as Record<
+      string,
+      {
+        id: string
+        lifecyclePhase: LifecyclePhase
+        dependencies: string[]
+      }
+    >
+  )
+
+  // On the second run of indexing we'll aggregate the lifecycle for each IT Component, given its own and
+  // the lifecycle of the related/underlying IT Components
+  Object.values(itComponentLifecycleAndDependenciesIndex).forEach((itComponent) => {
+    const { id, lifecyclePhase, dependencies } = itComponent
+    const dependenciesLifecyclePhases = dependencies.map(
+      (factSheetId) => itComponentLifecycleAndDependenciesIndex[factSheetId]?.lifecyclePhase ?? -1
+    )
+    const aggregatedLifecyclePhase = Math.min(lifecyclePhase, ...dependenciesLifecyclePhases)
+    if (aggregatedLifecyclePhase === -1)
+      throw new Error(`error while aggregating lifecycle phase for itComponent ${id}`)
+    const node = (filteredNodes[itComponent.id] as IITComponent) ?? null
+    if (node === null) throw new Error(`error while setting lifecycle value for itComponent ${id}`)
+    node.lifecycle = lifecyclePhase
+    node.lifecycleKey = getLifecyclePhaseLabel(lifecyclePhase)
+    node.aggregatedLifecycle = aggregatedLifecyclePhase
+    node.aggregatedLifecycleKey = getLifecyclePhaseLabel(aggregatedLifecyclePhase)
+  })
+
+  // This method will fill for each 'Application' node its 'aggregatedObsolescenceRisk'
+  // and 'aggregatedObsolescenceRiskKey' field. It mutates the 'filteredNodes' object
+  computeAggregatedObsolescenceRiskForApplications(filteredNodes)
   return { nodes: filteredNodes, edges: filteredEdges }
 }
-
-export interface IITComponentIndex {
-  [itComponentId: string]: {
-    missingLifecycle: boolean
-    eol: number | null
-    phaseOut: number | null
-  }
-}
-export const computeApplicationObsolescenceRisk = (applicationId: string, refDate: number) => {}
