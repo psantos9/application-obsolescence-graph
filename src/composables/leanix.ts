@@ -434,8 +434,30 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
     node.aggregatedLifecycleKey = getLifecyclePhaseLabel(aggregatedLifecyclePhase)
   })
 
+  const usedITNodeIndex = Object.values(applicationIndex).reduce((accumulator, { itComponents }) => {
+    itComponents.forEach(({ factSheetId }) => {
+      const dependencies = itComponentLifecycleAndDependenciesIndex[factSheetId]?.dependencies ?? null
+      if (dependencies === null) throw new Error(`could not find dependencies for itComponent ${factSheetId}`)
+      accumulator[factSheetId] = true
+      dependencies.forEach((factSheetId) => {
+        accumulator[factSheetId] = true
+      })
+      return accumulator
+    })
+    return accumulator
+  }, {} as Record<string, boolean>)
+
+  // We'll exclude itComponent trees that are not connected to any application
+  const filteredNodesExcludingITComponentsNotConnectedToApplications = Object.values(filteredNodes).reduce(
+    (accumulator, node) => {
+      if (node.type === 'Application' || usedITNodeIndex[node.id]) accumulator[node.id] = node
+      return accumulator
+    },
+    {} as Record<string, TGraphNode>
+  )
+
   // This method will fill for each 'Application' node its 'aggregatedObsolescenceRisk'
   // and 'aggregatedObsolescenceRiskKey' field. It mutates the 'filteredNodes' object
-  computeAggregatedObsolescenceRiskForApplications(filteredNodes)
-  return { nodes: filteredNodes, edges: filteredEdges }
+  computeAggregatedObsolescenceRiskForApplications(filteredNodesExcludingITComponentsNotConnectedToApplications)
+  return { nodes: filteredNodesExcludingITComponentsNotConnectedToApplications, edges: filteredEdges }
 }
