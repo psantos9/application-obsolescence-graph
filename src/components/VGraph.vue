@@ -38,8 +38,8 @@ const configs = defineConfigs({
   },
   node: {
     normal: {
-      type: ({ type }) => (type === 'Application' ? 'rect' : 'circle'),
-      color: ({ type }) => (type === 'Application' ? 'red' : 'green')
+      type: ({ type }) => (type === 'Application' ? 'circle' : 'circle'),
+      color: ({ type }) => (type === 'Application' ? '#4466cc' : '#ffe50d')
     },
     label: {
       visible: true,
