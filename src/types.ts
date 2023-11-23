@@ -1,4 +1,7 @@
-import type { LifecyclePhase } from '@/composables/leanix'
+import { LifecyclePhase, AggregatedObsolescenceRisk } from '@/composables/leanix'
+
+export type TLifecyclePhase = keyof typeof LifecyclePhase
+export type TAggregatedObsolescenceRisk = keyof typeof AggregatedObsolescenceRisk
 
 export interface IRelatedFactSheet {
   id: string
@@ -29,8 +32,8 @@ export interface IITComponent extends IFactSheet {
   eol: number | null
   phaseOut: number | null
   requires: IRelatedFactSheet[]
-  lifecycle: LifecyclePhase | null
-  aggregatedLifecycle: LifecyclePhase | null
+  lifecycle: TLifecyclePhase | null
+  aggregatedLifecycle: TLifecyclePhase | null
 }
 
 export type TGraphNode = IITComponent | IApplication

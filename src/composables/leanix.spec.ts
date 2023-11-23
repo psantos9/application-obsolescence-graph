@@ -1,13 +1,7 @@
 import { describe, expect, test, beforeAll, afterAll, beforeEach } from 'vitest'
 import { Authenticator, GraphQLClient } from 'leanix-js'
 import { writeFile } from 'node:fs/promises'
-import {
-  fetchApplications,
-  fetchITComponents,
-  generateGraph,
-  getSubGraphForRefDate,
-  getITComponentIndexFromGraph
-} from '@/composables/leanix'
+import { fetchApplications, fetchITComponents, generateGraph, getSubGraphForRefDate } from '@/composables/leanix'
 import type { IApplication, IITComponent } from '@/types'
 const lxr = require('../../lxr.json')
 
@@ -53,7 +47,6 @@ describe('leanix.ts', () => {
     const graph = generateGraph({ applicationIndex, itComponentIndex })
     const refDate = 20231122
     const subGraph = getSubGraphForRefDate(graph, refDate)
-    const a = getITComponentIndexFromGraph(subGraph, itComponentIndex, applicationIndex, 20231122)
-    console.log(a)
+    console.log(subGraph)
   }, 100000)
 })

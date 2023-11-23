@@ -7,25 +7,33 @@ import type {
   IRelatedITComponent,
   IGraphEdge,
   TGraphNode,
-  IGraph
+  IGraph,
+  TLifecyclePhase,
+  TAggregatedObsolescenceRisk
 } from '@/types'
 
 export enum LifecyclePhase {
-  UNDEFINED,
-  END_OF_LIFE,
-  PHASE_OUT,
-  OTHER
+  undefined,
+  eol,
+  phaseOut,
+  other
 }
 
 export enum AggregatedObsolescenceRisk {
-  MISSING_LIFECYCLE_INFO,
-  UNADDRESSED_END_OF_LIFE,
-  UNADDRESSED_PHASE_OUT,
-  MISSING_IT_COMPONENT_INFO,
-  RISK_ACCEPTED,
-  RISK_ADDRESSED,
-  NO_RISK
+  missingLifecycle,
+  unaddressedEndOfLife,
+  unaddressedPhaseOut,
+  missingITComponent,
+  riskAccepted,
+  riskAddressed,
+  noRisk
 }
+
+export const getLifecyclePhaseLabel = (lifecyclePhase: LifecyclePhase) =>
+  LifecyclePhase[lifecyclePhase] as TLifecyclePhase
+
+export const getAggregatedObsolescenceRiskLabel = (aggregatedObsolescenceRisk: AggregatedObsolescenceRisk) =>
+  AggregatedObsolescenceRisk[aggregatedObsolescenceRisk] as TAggregatedObsolescenceRisk
 
 export type TLXGraphQLApiClientFn = (query: string, variables?: string) => Promise<any>
 
@@ -303,10 +311,10 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
   const itComponentLifecycleAndDependenciesIndex = Object.values(itComponentIndex).reduce(
     (accumulator, itComponent) => {
       const { id, missingLifecycle, eol, phaseOut, children, requires } = itComponent
-      let lifecyclePhase = LifecyclePhase.OTHER
-      if (missingLifecycle) lifecyclePhase = LifecyclePhase.UNDEFINED
-      else if (typeof eol === 'number' && eol < refDate) lifecyclePhase = LifecyclePhase.END_OF_LIFE
-      else if (typeof phaseOut === 'number' && phaseOut < refDate) lifecyclePhase = LifecyclePhase.PHASE_OUT
+      let lifecyclePhase = LifecyclePhase.other
+      if (missingLifecycle) lifecyclePhase = LifecyclePhase.undefined
+      else if (typeof eol === 'number' && eol < refDate) lifecyclePhase = LifecyclePhase.eol
+      else if (typeof phaseOut === 'number' && phaseOut < refDate) lifecyclePhase = LifecyclePhase.phaseOut
       const dependencies = Array.from(
         getITComponentDependencies(Array.from([...children, ...requires]), new Set(), itComponentIndex)
       )
@@ -335,38 +343,10 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
       throw new Error(`error while aggregating lifecycle phase for itComponent ${id}`)
     const node = (filteredNodes[itComponent.id] as IITComponent) ?? null
     if (node === null) throw new Error(`error while setting lifecycle value for itComponent ${id}`)
-    node.lifecycle = lifecyclePhase
-    node.aggregatedLifecycle = aggregatedLifecyclePhase
+    node.lifecycle = getLifecyclePhaseLabel(lifecyclePhase)
+    node.aggregatedLifecycle = getLifecyclePhaseLabel(aggregatedLifecyclePhase)
   })
   return { nodes: filteredNodes, edges: filteredEdges }
-}
-
-export const getITComponentIndexFromGraph = (
-  graph: IGraph,
-  itComponentIndex: { [id: string]: IITComponent },
-  applicationIndex: { [id: string]: IApplication },
-  refDate: number
-) => {
-  const indexes = Object.values(graph.nodes).reduce(
-    (accumulator, node) => {
-      if (node.type === 'ITComponent') {
-        const itComponent = itComponentIndex[node.id] ?? null
-        if (itComponent === null) throw new Error(`invalid it component id ${node.id}`)
-        accumulator.itComponents[itComponent.id] = itComponent
-      } else if (node.type === 'Application') {
-        const application = applicationIndex[node.id] ?? null
-        if (application === null) throw new Error(`invalid application id ${node.id}`)
-        accumulator.applications[application.id] = application
-      }
-      return accumulator
-    },
-    { itComponents: {}, applications: {} } as {
-      itComponents: Record<string, IITComponent>
-      applications: Record<string, IApplication>
-    }
-  )
-
-  console.log('GRAPH', graph, indexes)
 }
 
 export const computeApplicationObsolescenceRisk = (applicationId: string, refDate: number) => {}
