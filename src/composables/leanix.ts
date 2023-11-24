@@ -1,3 +1,4 @@
+import { type Ref } from 'vue'
 import QueryApplications from '@/graphql/QueryApplications.gql'
 import QueryITComponents from '@/graphql/QueryITComponents.gql'
 import type {
@@ -343,7 +344,12 @@ const computeAggregatedObsolescenceRiskForApplications = (
   return nodes
 }
 
-export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph => {
+export const getSubGraphForRefDate = (
+  graph: IGraph,
+  refDate: number,
+  filteredApplicationsIndex: Record<string, boolean>,
+  outputSubGraph?: Ref<IGraph>
+): IGraph => {
   const { edges, nodes } = graph
 
   // we'll filter out the edges from the original graph that are inactive for the reference date
@@ -459,5 +465,14 @@ export const getSubGraphForRefDate = (graph: IGraph, refDate: number): IGraph =>
   // This method will fill for each 'Application' node its 'aggregatedObsolescenceRisk'
   // and 'aggregatedObsolescenceRiskKey' field. It mutates the 'filteredNodes' object
   computeAggregatedObsolescenceRiskForApplications(filteredNodesExcludingITComponentsNotConnectedToApplications)
-  return { nodes: filteredNodesExcludingITComponentsNotConnectedToApplications, edges: filteredEdges }
+  const filteredNodesExcludingFilteredApplications = Object.values(
+    filteredNodesExcludingITComponentsNotConnectedToApplications
+  ).reduce((accumulator, node) => {
+    if (node.type === 'ITComponent') accumulator[node.id] = node
+    else if (node.type === 'Application' && filteredApplicationsIndex[node.id]) accumulator[node.id] = node
+    return accumulator
+  }, {} as Record<string, TGraphNode>)
+  const subGraph = { nodes: filteredNodesExcludingFilteredApplications, edges: filteredEdges }
+  if (outputSubGraph) outputSubGraph.value = subGraph
+  return subGraph
 }

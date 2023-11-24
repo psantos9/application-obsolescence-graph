@@ -1,11 +1,16 @@
-import { ref, unref, computed } from 'vue'
+import { ref, unref, computed, watch } from 'vue'
 import type { IGraph } from '@/types'
-import '@leanix/reporting'
+import debounce from 'lodash.debounce'
 import { format, addMonths, parseISO } from 'date-fns'
 import { loadGraph, getSubGraphForRefDate } from '@/composables/leanix'
+import '@leanix/reporting'
+
+const debouncedGetSubGraphForRefDate = debounce(getSubGraphForRefDate, 500)
 
 const graph = ref<IGraph>({ edges: {}, nodes: {} })
+const subGraph = ref<IGraph>({ edges: {}, nodes: {} })
 const refDate = ref(new Date())
+const filteredApplicationsIndex = ref<Record<string, boolean>>({})
 
 const getUIConfiguration = (date: Date): lxr.UIMinimalConfiguration => ({
   timeline: {
@@ -23,6 +28,19 @@ const getUIConfiguration = (date: Date): lxr.UIMinimalConfiguration => ({
 const initializeReport = async () => {
   await lx.init()
   const config: lxr.ReportConfiguration = {
+    facets: [
+      {
+        key: 'Application',
+        label: lx.translateFactSheetType('Application', 'plural'),
+        fixedFactSheetType: 'Application',
+        callback: (factSheets) => {
+          filteredApplicationsIndex.value = factSheets.reduce(
+            (accumulator, { id }) => ({ ...accumulator, [id]: true }),
+            {}
+          )
+        }
+      }
+    ],
     ui: {
       ...getUIConfiguration(unref(refDate)),
       update: ({
@@ -76,13 +94,26 @@ const openFactSheetSidePane = async (params: { node: string; event: MouseEvent }
   })
 }
 
+watch(
+  [graph, refDate, filteredApplicationsIndex],
+  ([graph, refDate, filteredApplicationsIndex]) => {
+    debouncedGetSubGraphForRefDate(
+      graph,
+      parseInt(format(unref(refDate), 'yyyyMMdd')),
+      filteredApplicationsIndex,
+      subGraph
+    ) ?? { nodes: {}, edges: {} }
+  },
+  { immediate: true }
+)
+
 const useApi = () => {
   return {
     refDate: computed({
       get: () => unref(refDate),
       set: (value) => (refDate.value = value)
     }),
-    graph: computed(() => getSubGraphForRefDate(unref(graph), parseInt(format(unref(refDate), 'yyyyMMdd')))),
+    graph: computed(() => unref(subGraph)),
     initializeReport,
     loadDataset,
     openFactSheetSidePane
