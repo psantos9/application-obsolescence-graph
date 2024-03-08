@@ -67,6 +67,7 @@ import {
   type Edges,
   type Node
 } from 'v-network-graph'
+
 import { ForceLayout, type ForceNodeDatum, type ForceEdgeDatum } from 'v-network-graph/lib/force-layout'
 import { useApi } from '@/composables/useApi'
 
@@ -90,12 +91,6 @@ const graph = ref<VNetworkGraphInstance | null>(null)
 const nodes = computed(() => unref(dataset)?.nodes ?? {})
 const edges = computed(() => unref(dataset)?.edges ?? {})
 const nodeLength = computed(() => Object.keys(unref(nodes)).length)
-
-buildNetwork(20, nodes.value, edges.value)
-
-watch(20, () => {
-  buildNetwork(20, nodes.value, edges.value)
-})
 
 const getNodeLabel = (node: Node): string => {
   const {
@@ -241,8 +236,8 @@ const configs = defineConfigs({
       type: ({ type }) => (type === 'ITComponent' ? 'circle' : 'rect'),
       radius: 32,
       // for type is "rect" -->
-      width: 64,
-      height: 64,
+      width: 45,
+      height: 45,
       strokeWidth: 0,
       strokeColor: '#000000',
       strokeDasharray: '0',
@@ -257,7 +252,7 @@ const configs = defineConfigs({
   edge: {
     normal: {
       gap: 10,
-      width: ({ type }) => (type === 'relToRequires' ? 1 : 3),
+      width: 3,
       borderRadius: 1,
       dasharray: ({ type }) => (type === 'relToChild' ? '4' : '0'),
       color: ({ type }) => {
@@ -281,12 +276,13 @@ const configs = defineConfigs({
     marker: {
       target: {
         type: 'arrow',
-        width: 3,
-        height: 3,
+        width: 2,
+        height: 2,
         margin: -1
       }
     },
     hover: {
+      gap: 10,
       width: 4,
       borderRadius: 2,
       dasharray: ({ type }) => (type === 'relToChild' ? '4' : '0'),

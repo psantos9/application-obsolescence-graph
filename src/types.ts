@@ -56,3 +56,4 @@ export interface IGraph {
   nodes: { [nodeId: string]: TGraphNode }
   edges: { [edgeId: string]: IGraphEdge }
 }
+
