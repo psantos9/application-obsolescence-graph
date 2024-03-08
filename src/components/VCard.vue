@@ -18,7 +18,7 @@ defineProps<{ node: TGraphNode }>()
 
 // First section of application, and then IT Component Section. Render conditionally.
 
-// Color code by obsolescenseRisk
+// Color code by obsolescense
 </script>
 
 <template>
